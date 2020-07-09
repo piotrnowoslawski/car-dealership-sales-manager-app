@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 
-const UserInfo = ({}) => {
+const UserInfo = () => {
   const [user, setUser] = useState({});
   const { userId } = useParams();
   const history = useHistory();
   const port = 3001;
-  const userApi = `http://localhost:${port}/users/${userId}`;
+  const url = `http://localhost:${port}/users/${userId}`;
 
   useEffect(() => {
-    getUser(userApi);
+    getUser(url);
   }, []);
 
   const getUser = (url) => {
@@ -27,7 +27,8 @@ const UserInfo = ({}) => {
       .catch((error) => console.error(`Error: ${error}`));
   };
 
-  const deleteUser = (url) => {
+  const deleteUser = (e, url) => {
+    e.preventDefault();
     const answer = window.confirm("Czy napewno chcesz usunąć użytkownika?");
     if (answer) {
       const options = {
@@ -47,11 +48,11 @@ const UserInfo = ({}) => {
 
   return (
     <>
-      {user.name}
+      {user.firstName}
       <Link to="/dashboard/users">
         <button>Zamknij</button>
       </Link>
-      <button onClick={() => deleteUser(userApi)}>Usuń</button>
+      <button onClick={(e) => deleteUser(e, url)}>Usuń</button>
       <button>Edytuj</button>
     </>
   );

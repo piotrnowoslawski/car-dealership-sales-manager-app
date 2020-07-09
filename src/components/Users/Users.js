@@ -1,39 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { getUsers } from "data/fetch/users.fetch";
 
-const Users = () => {
-  const [users, setUsers] = useState([]);
-  const port = 3001;
-  const usersApi = `http://localhost:${port}/users`;
-
+const Users = ({ users, getUsers }) => {
   useEffect(() => {
-    getUsers(usersApi);
+    getUsers();
   }, []);
 
-  const getUsers = (url) => {
-    return fetch(url)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          throw new Error("Brak połączenia");
-        }
-      })
-      .then((data) => {
-        setUsers(data);
-      })
-      .catch((error) => console.error(`Error: ${error}`));
-  };
-
   return (
-    <ul>
-      {users.map((item) => (
-        <li key={item.id}>
-          <Link to={`/dashboard/users/${item.id}`}>{item.name}</Link>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul>
+        {users.map((item) => (
+          <li key={item.id}>
+            <Link to={`/dashboard/users/${item.id}`}>{item.firstName}</Link>
+          </li>
+        ))}
+      </ul>
+      <Link to="/dashboard/users/new">
+        <button>Dodaj użytkownika</button>
+      </Link>
+    </>
   );
 };
 
-export default Users;
+const mapStateToProps = (state) => ({
+  users: state.usersReducer.users,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getUsers: () => dispatch(getUsers()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users);

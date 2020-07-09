@@ -3,6 +3,8 @@ import { Switch, Route } from "react-router-dom";
 import { Navigation } from "components";
 import { Users } from "components";
 import { UserInfo } from "components";
+import { UserAdd } from "components";
+import { UserEdit } from "components";
 
 const DashBoard = () => {
   return (
@@ -17,8 +19,10 @@ const DashBoard = () => {
         <Route path="/dashboard" exact>
           dashboard
         </Route>
-        <Route path="/dashboard/users" exact component={Users} />
-        <Route path="/dashboard/users/:userId" exact component={UserInfo} />
+        <Route path="/dashboard/users/new" component={UserAdd} />
+        <Route path="/dashboard/users/:userId/edit" component={UserEdit} />
+        <Route path="/dashboard/users/:userId" component={UserInfo} />
+        <Route path="/dashboard/users" component={Users} />
       </Switch>
     </>
   );
