@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const UserForm = ({ user, handleForm, handleCancel, submitText }) => {
+  const [id, setId] = useState("");
   const [firstName, setFirstName] = useState("");
   const [secondName, setSecondName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -23,6 +24,7 @@ const UserForm = ({ user, handleForm, handleCancel, submitText }) => {
 
   useEffect(() => {
     if (user) {
+      setId(user.id);
       setFirstName(user.firstName);
       setSecondName(user.secondName);
       setLastName(user.lastName);
@@ -32,8 +34,8 @@ const UserForm = ({ user, handleForm, handleCancel, submitText }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newUser = {
-      id: "",
+    const user = {
+      id: id,
       firstName: firstName,
       secondName: secondName,
       lastName: lastName,
@@ -54,7 +56,7 @@ const UserForm = ({ user, handleForm, handleCancel, submitText }) => {
       dateOfEmployment: "",
       dateOfTermination: "",
     };
-    handleForm(newUser);
+    handleForm(user);
   };
 
   return (
@@ -100,10 +102,10 @@ const UserForm = ({ user, handleForm, handleCancel, submitText }) => {
             onChange={(e) => setPeselNumber(e.target.value)}
           />
         </div>
+        <button onClick={(e) => handleCancel(e)}>Anuluj</button>
         <button type="submit" disabled={false}>
           {submitText}
         </button>
-        <button onClick={(e) => handleCancel(e)}>Anuluj</button>
       </form>
     </>
   );

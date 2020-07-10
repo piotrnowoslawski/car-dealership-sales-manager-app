@@ -1,25 +1,15 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "data/fetch/userManagement.fetch";
 import { UserForm } from "components";
 
 const UserAdd = () => {
   const history = useHistory();
-  const port = 3001;
-  const url = `http://localhost:${port}/users`;
+  const dispatch = useDispatch();
 
-  const addUser = (user) => {
-    const options = {
-      method: "post",
-      body: JSON.stringify(user),
-      headers: new Headers({
-        "Content-Type": "application/json",
-      }),
-    };
-
-    return fetch(url, options)
-      .then((res) => res.json())
-      .then((data) => history.push(`/dashboard/users/${data.id}`))
-      .catch((error) => console.error(`Error: ${error}`));
+  const handleAdd = (user) => {
+    dispatch(addUser(user, history));
   };
 
   const handleCancel = (e) => {
@@ -33,7 +23,7 @@ const UserAdd = () => {
   return (
     <>
       <UserForm
-        handleForm={addUser}
+        handleForm={handleAdd}
         handleCancel={handleCancel}
         submitText={"Zapisz"}
       />

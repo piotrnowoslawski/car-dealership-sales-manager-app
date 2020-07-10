@@ -1,36 +1,36 @@
 import {
-  FETCH_USERS_PENDING,
-  FETCH_USERS_SUCCESS,
-  FETCH_USERS_ERROR,
+  GET_USER_PENDING,
+  GET_USER_SUCCESS,
+  GET_USER_ERROR,
 } from "data/constans";
 
-const initialUsers = {
+const initialUser = {
   pending: false,
-  users: [],
+  user: {},
   error: null,
 };
 
-const usersReducer = (state = initialUsers, action) => {
+const userInfoReducer = (state = initialUser, action) => {
   switch (action.type) {
-    case FETCH_USERS_PENDING:
+    case GET_USER_PENDING:
       return {
         ...state,
         pending: true,
         error: null,
       };
-    case FETCH_USERS_SUCCESS:
+    case GET_USER_SUCCESS:
       return {
         ...state,
         pending: false,
-        users: action.payload,
+        user: action.payload,
       };
 
-    case FETCH_USERS_ERROR:
+    case GET_USER_ERROR:
       return {
         ...state,
         pending: false,
         error: action.payload,
-        users: [],
+        user: {},
       };
 
     default:
@@ -38,4 +38,4 @@ const usersReducer = (state = initialUsers, action) => {
   }
 };
 
-export default usersReducer;
+export default userInfoReducer;

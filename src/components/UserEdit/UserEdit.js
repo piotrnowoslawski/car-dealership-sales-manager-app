@@ -1,35 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getUser } from "data/fetch/userInfo.fetch";
+import { editUser } from "data/fetch/userManagement.fetch";
 import { UserForm } from "components";
 
 const UserEdit = () => {
-  const [user, setUser] = useState(null);
   const { userId } = useParams();
   const history = useHistory();
-  const port = 3001;
-  const url = `http://localhost:${port}/users/${userId}`;
+  const user = useSelector((state) => state.userInfoReducer.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getUser(url);
+    dispatch(getUser(userId));
   }, []);
 
-  const getUser = (url) => {
-    return fetch(url)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          throw new Error("Brak połączenia");
-        }
-      })
-      .then((data) => {
-        setUser(data);
-        console.log(user);
-      })
-      .catch((error) => console.error(`Error: ${error}`));
+  const handleEdit = (user) => {
+    dispatch(editUser(user, history));
   };
-
-  const editUser = () => {};
 
   const handleCancel = (e) => {
     e.preventDefault();
@@ -41,7 +29,12 @@ const UserEdit = () => {
 
   return (
     <>
-      <UserForm user={user} handleForm={editUser} handleCancel={handleCancel} />
+      <UserForm
+        user={user}
+        handleForm={handleEdit}
+        handleCancel={handleCancel}
+        submitText={"Zapisz"}
+      />
     </>
   );
 };

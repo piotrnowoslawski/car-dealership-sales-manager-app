@@ -1,26 +1,27 @@
 import {
-  FETCH_USERS_PENDING,
-  FETCH_USERS_SUCCESS,
-  FETCH_USERS_ERROR,
+  GET_USER_PENDING,
+  GET_USER_SUCCESS,
+  GET_USER_ERROR,
 } from "data/constans";
 
-export const getUsers = () => {
+export const getUser = (data) => {
+  const port = 3001;
   return (dispatch) => {
     dispatch({
-      type: FETCH_USERS_PENDING,
+      type: GET_USER_PENDING,
     });
 
-    fetch("http://localhost:3001/users")
+    fetch(`http://localhost:${port}/users/${data}`)
       .then((response) => response.json())
       .then((data) =>
         dispatch({
-          type: FETCH_USERS_SUCCESS,
+          type: GET_USER_SUCCESS,
           payload: data,
         })
       )
       .catch((error) =>
         dispatch({
-          type: FETCH_USERS_ERROR,
+          type: GET_USER_ERROR,
           payload: error,
         })
       );
