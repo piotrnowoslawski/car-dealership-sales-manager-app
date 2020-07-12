@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
   border: 0;
   text-decoration: none;
   list-style-type: none;
+  font-family: 'Open Sans', sans-serif;
   box-sizing: border-box;
 }
 

@@ -1,30 +1,49 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
+import { Container, PathNameInfo } from "./Dashboard.css";
 import { Navigation } from "components";
+import { Wrapper } from "components";
+import { DashboardPanel } from "components";
 import { Users } from "components";
 import { UserInfo } from "components";
 import { UserAdd } from "components";
 import { UserEdit } from "components";
 
 const DashBoard = () => {
+  const location = useLocation();
+  const pathName = location.pathname.split("/").pop().replace(/-/, " ");
+
   return (
-    <>
+    <Container>
       <Navigation
         items={[
-          { id: "1", content: "dashboard", link: "/dashboard" },
-          { id: "2", content: "users", link: "/dashboard/users" },
+          {
+            id: "1",
+            title: "Panel zarządzania",
+            link: "/dashboard/control-panel",
+            iconName: "panel zarządzania",
+            iconPath: "dashboard",
+          },
+          {
+            id: "2",
+            title: "Użytkownicy",
+            link: "/dashboard/users",
+            iconName: "użytkownicy",
+            iconPath: "users",
+          },
         ]}
       />
-      <Switch>
-        <Route path="/dashboard" exact>
-          dashboard
-        </Route>
-        <Route path="/dashboard/users/new" component={UserAdd} />
-        <Route path="/dashboard/users/:userId/edit" component={UserEdit} />
-        <Route path="/dashboard/users/:userId" component={UserInfo} />
-        <Route path="/dashboard/users" component={Users} />
-      </Switch>
-    </>
+      <Wrapper>
+        <PathNameInfo>{pathName}</PathNameInfo>
+        <Switch>
+          <Route path="/dashboard/control-panel" component={DashboardPanel} />
+          <Route path="/dashboard/users/new" component={UserAdd} />
+          <Route path="/dashboard/users/:userId/edit" component={UserEdit} />
+          <Route path="/dashboard/users/:userId" component={UserInfo} />
+          <Route path="/dashboard/users" component={Users} />
+        </Switch>
+      </Wrapper>
+    </Container>
   );
 };
 
