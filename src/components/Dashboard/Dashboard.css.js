@@ -6,7 +6,9 @@ export const Container = styled.div`
 `;
 
 export const PathNameInfo = styled.h1`
-  font-size: 1rem;
+  font-size: 2rem;
+  margin-bottom: 20px;
+
   &:first-letter {
     text-transform: capitalize;
   }

@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { ButtonsContainer } from "./UserForm.css";
+import { Button, ButtonImg, ButtonText } from "../Buttons/Buttons";
+import cancelButtonIcon from "images/buttons/button-cancel-icon.png";
+import saveButtonIcon from "images/buttons/button-save-icon.png";
 
 const UserForm = ({ user, handleForm, handleCancel, submitText }) => {
   const [id, setId] = useState("");
@@ -102,10 +106,16 @@ const UserForm = ({ user, handleForm, handleCancel, submitText }) => {
             onChange={(e) => setPeselNumber(e.target.value)}
           />
         </div>
-        <button onClick={(e) => handleCancel(e)}>Anuluj</button>
-        <button type="submit" disabled={false}>
-          {submitText}
-        </button>
+        <ButtonsContainer>
+          <Button black onClick={(e) => handleCancel(e)}>
+            <ButtonImg src={cancelButtonIcon} alt="przycisk anuluj" />
+            <ButtonText>Anuluj</ButtonText>
+          </Button>
+          <Button green type="submit" disabled={false}>
+            <ButtonImg src={saveButtonIcon} alt="przycisk zapisz" />
+            <ButtonText>{submitText}</ButtonText>
+          </Button>
+        </ButtonsContainer>
       </form>
     </>
   );

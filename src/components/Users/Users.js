@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsers } from "data/fetch/users.fetch";
+import { List, ListItem, StyledLink } from "./Users.css";
+import { Button, ButtonImg, ButtonText } from "../Buttons/Buttons";
+import addButtonIcon from "images/buttons/button-add-user-icon.png";
 
 const Users = () => {
   const users = useSelector((state) => state.usersReducer.users);
@@ -12,15 +15,20 @@ const Users = () => {
 
   return (
     <>
-      <ul>
+      <List>
         {users.map((item) => (
-          <li key={item.id}>
-            <Link to={`/dashboard/users/${item.id}`}>{item.firstName}</Link>
-          </li>
+          <ListItem key={item.id}>
+            <StyledLink to={`/dashboard/users/${item.id}`}>
+              {item.firstName}
+            </StyledLink>
+          </ListItem>
         ))}
-      </ul>
+      </List>
       <Link to="/dashboard/users/new">
-        <button>Dodaj użytkownika</button>
+        <Button green>
+          <ButtonImg src={addButtonIcon} alt="przycisk dodaj użytkownika" />
+          <ButtonText>Dodaj użytkownika</ButtonText>
+        </Button>
       </Link>
     </>
   );
