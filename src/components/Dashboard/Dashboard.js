@@ -34,7 +34,7 @@ const DashBoard = () => {
         ]}
       />
       <Wrapper>
-        <PathNameInfo>{pathName}</PathNameInfo>
+        {/* <PathNameInfo>{pathName}</PathNameInfo> */}
         <Switch>
           <Route path="/dashboard/control-panel" component={DashboardPanel} />
           <Route path="/dashboard/users/new" component={UserAdd} />

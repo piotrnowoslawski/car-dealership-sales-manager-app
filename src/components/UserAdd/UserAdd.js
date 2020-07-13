@@ -25,6 +25,9 @@ const UserAdd = () => {
       <UserForm
         handleForm={handleAdd}
         handleCancel={handleCancel}
+        headerText={"Nowy użytkownik"}
+        headerIconPath={"new-user"}
+        headerIconTitle={"ikona nowego użytkownika"}
         submitText={"Zapisz"}
       />
     </>

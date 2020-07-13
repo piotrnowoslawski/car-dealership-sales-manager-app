@@ -2,8 +2,25 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsers } from "data/fetch/users.fetch";
-import { List, ListItem, StyledLink } from "./Users.css";
-import { Button, ButtonImg, ButtonText } from "../Buttons/Buttons";
+import {
+  DashboardHeader,
+  DashboardHeaderImg,
+  DashboardHeaderText,
+} from "components/DashboardHeader/DashboardHeader";
+import {
+  UsersTableContainer,
+  UsersTableHeader,
+  UsersList,
+  UsersListItem,
+  StyledLink,
+} from "./Users.css";
+import {
+  ButtonsContainer,
+  Button,
+  ButtonImg,
+  ButtonText,
+} from "../Buttons/Buttons";
+import usersHeaderIcon from "images/headers/header-users-icon.png";
 import addButtonIcon from "images/buttons/button-add-user-icon.png";
 
 const Users = () => {
@@ -15,21 +32,30 @@ const Users = () => {
 
   return (
     <>
-      <List>
-        {users.map((item) => (
-          <ListItem key={item.id}>
-            <StyledLink to={`/dashboard/users/${item.id}`}>
-              {item.firstName}
-            </StyledLink>
-          </ListItem>
-        ))}
-      </List>
-      <Link to="/dashboard/users/new">
-        <Button green>
-          <ButtonImg src={addButtonIcon} alt="przycisk dodaj użytkownika" />
-          <ButtonText>Dodaj użytkownika</ButtonText>
-        </Button>
-      </Link>
+      <DashboardHeader>
+        <DashboardHeaderText>Użytkownicy</DashboardHeaderText>
+        <DashboardHeaderImg src={usersHeaderIcon} alt="ikona użytkowników" />
+      </DashboardHeader>
+      <UsersTableContainer>
+        <UsersTableHeader></UsersTableHeader>
+        <UsersList>
+          {users.map((item) => (
+            <UsersListItem key={item.id}>
+              <StyledLink to={`/dashboard/users/${item.id}`}>
+                {item.firstName}
+              </StyledLink>
+            </UsersListItem>
+          ))}
+        </UsersList>
+      </UsersTableContainer>
+      <ButtonsContainer>
+        <Link to="/dashboard/users/new">
+          <Button green>
+            <ButtonImg src={addButtonIcon} alt="przycisk dodaj użytkownika" />
+            <ButtonText>Dodaj użytkownika</ButtonText>
+          </Button>
+        </Link>
+      </ButtonsContainer>
     </>
   );
 };

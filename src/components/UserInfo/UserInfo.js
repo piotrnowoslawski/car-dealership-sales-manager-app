@@ -3,8 +3,18 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "data/fetch/userInfo.fetch";
 import { deleteUser } from "data/fetch/userManagement.fetch";
-import { ButtonsContainer } from "./UserInfo.css";
-import { Button, ButtonImg, ButtonText } from "../Buttons/Buttons";
+import {
+  DashboardHeader,
+  DashboardHeaderImg,
+  DashboardHeaderText,
+} from "components/DashboardHeader/DashboardHeader";
+import {
+  ButtonsContainer,
+  Button,
+  ButtonImg,
+  ButtonText,
+} from "../Buttons/Buttons";
+import userInfoHeaderIcon from "images/headers/header-user-info-icon.png";
 import closeButtonIcon from "images/buttons/button-close-icon.png";
 import deleteButtonIcon from "images/buttons/button-delete-icon.png";
 import editButtonIcon from "images/buttons/button-edit-user-icon.png";
@@ -29,6 +39,13 @@ const UserInfo = () => {
 
   return (
     <>
+      <DashboardHeader>
+        <DashboardHeaderText>Widok użytkownika</DashboardHeaderText>
+        <DashboardHeaderImg
+          src={userInfoHeaderIcon}
+          alt="ikona widoku użytkownika"
+        />
+      </DashboardHeader>
       {user.firstName}
       <ButtonsContainer>
         <Link to="/dashboard/users">

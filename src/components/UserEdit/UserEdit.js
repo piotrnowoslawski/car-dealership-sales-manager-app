@@ -33,6 +33,9 @@ const UserEdit = () => {
         user={user}
         handleForm={handleEdit}
         handleCancel={handleCancel}
+        headerText={"Edycja użytkownika"}
+        headerIconPath={"edit-user"}
+        headerIconTitle={"ikona edycji użytkownika"}
         submitText={"Zapisz"}
       />
     </>

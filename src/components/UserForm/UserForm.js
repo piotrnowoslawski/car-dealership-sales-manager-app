@@ -1,10 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { ButtonsContainer } from "./UserForm.css";
-import { Button, ButtonImg, ButtonText } from "../Buttons/Buttons";
+import {
+  DashboardHeader,
+  DashboardHeaderImg,
+  DashboardHeaderText,
+} from "components/DashboardHeader/DashboardHeader";
+import {
+  ButtonsContainer,
+  Button,
+  ButtonImg,
+  ButtonText,
+} from "../Buttons/Buttons";
 import cancelButtonIcon from "images/buttons/button-cancel-icon.png";
 import saveButtonIcon from "images/buttons/button-save-icon.png";
 
-const UserForm = ({ user, handleForm, handleCancel, submitText }) => {
+const UserForm = ({
+  user,
+  handleForm,
+  handleCancel,
+  headerText,
+  headerIconPath,
+  headerIconTitle,
+  submitText,
+}) => {
   const [id, setId] = useState("");
   const [firstName, setFirstName] = useState("");
   const [secondName, setSecondName] = useState("");
@@ -65,6 +82,13 @@ const UserForm = ({ user, handleForm, handleCancel, submitText }) => {
 
   return (
     <>
+      <DashboardHeader>
+        <DashboardHeaderText>{headerText}</DashboardHeaderText>
+        <DashboardHeaderImg
+          src={require(`images/headers/header-${headerIconPath}-icon.png`)}
+          alt={headerIconTitle}
+        />
+      </DashboardHeader>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <label htmlFor="firstName">Imię:</label>

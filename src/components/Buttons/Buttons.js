@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const ButtonsContainer = styled.div`
+  display: flex;
+  margin-top: 20px;
+`;
+
 export const Button = styled.button`
   display: flex;
   height: 40px;
