@@ -10,6 +10,7 @@ export default {
   colors: {
     white: {
       normal: "rgb(255,255,255)",
+      lightSmoke: "rgb(250,250,250)",
       smoke: "rgb(245,245,245)",
     },
     black: {

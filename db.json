@@ -1,6 +1,6 @@
 {
-  "users": [
-    {
+  "users": [{
+      "_id": 1,
       "id": 1,
       "employeeNumber": 123317,
       "firstName": "Tomasz",
@@ -27,6 +27,7 @@
       "employmentStatus": true
     },
     {
+      "_id": 2,
       "id": 2,
       "employeeNumber": 123318,
       "firstName": "Karolina",
@@ -51,28 +52,6 @@
       "dateOfEmployment": "2016-05-01T00:00:00.000Z",
       "dateOfTermination": "",
       "employmentStatus": true
-    },
-    {
-      "id": 3,
-      "firstName": "Jan",
-      "secondName": "",
-      "lastName": "",
-      "peselNumber": "",
-      "gender": "",
-      "dateOfBirth": "",
-      "street": "",
-      "propertyNumber": "",
-      "apartmentNumber": "",
-      "city": "",
-      "zipCode": "",
-      "email": "",
-      "privetPhone": "",
-      "businessPhone": "",
-      "jobPosition": "",
-      "workplace": "",
-      "education": "",
-      "dateOfEmployment": "",
-      "dateOfTermination": ""
     }
   ]
 }

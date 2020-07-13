@@ -46,6 +46,7 @@ const UserInfo = () => {
           alt="ikona widoku użytkownika"
         />
       </DashboardHeader>
+      {user.lastName}
       {user.firstName}
       <ButtonsContainer>
         <Link to="/dashboard/users">

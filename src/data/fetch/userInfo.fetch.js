@@ -5,14 +5,14 @@ import {
 } from "data/constans";
 
 export const getUser = (data) => {
-  const port = 3001;
+  const api = "https://salty-journey-27131.herokuapp.com/api";
   return (dispatch) => {
     dispatch({
       type: GET_USER_PENDING,
     });
 
-    fetch(`http://localhost:${port}/users/${data}`)
-      .then((response) => response.json())
+    fetch(`${api}/users/${data}`)
+      .then((res) => res.json())
       .then((data) =>
         dispatch({
           type: GET_USER_SUCCESS,

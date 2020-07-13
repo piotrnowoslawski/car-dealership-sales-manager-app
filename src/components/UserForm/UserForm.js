@@ -45,10 +45,11 @@ const UserForm = ({
 
   useEffect(() => {
     if (user) {
-      setId(user.id);
+      setId(user._id);
       setFirstName(user.firstName);
       setSecondName(user.secondName);
       setLastName(user.lastName);
+      setPeselNumber(user.peselNumber);
     }
   }, [user]);
 
@@ -56,7 +57,7 @@ const UserForm = ({
     e.preventDefault();
 
     const user = {
-      id: id,
+      _id: id,
       firstName: firstName,
       secondName: secondName,
       lastName: lastName,

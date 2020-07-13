@@ -6,7 +6,7 @@ const active = "active";
 export const Container = styled.nav`
   background: ${({ theme }) => theme.colors.grey.light};
   height: 100vh;
-  width: 240px;
+  min-width: 240px;
   overflow: hidden;
 `;
 
