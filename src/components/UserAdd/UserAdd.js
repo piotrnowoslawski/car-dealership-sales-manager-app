@@ -13,11 +13,7 @@ const UserAdd = () => {
   };
 
   const handleCancel = (e) => {
-    e.preventDefault();
-    const answer = window.confirm("Czy napewno chcesz anulować?");
-    if (answer) {
-      history.push(`/dashboard/users/page/:1`);
-    } else return;
+    history.push(`/dashboard/users`);
   };
 
   return (

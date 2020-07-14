@@ -29,8 +29,7 @@ const UserInfo = () => {
     dispatch(getUser(userId));
   }, []);
 
-  const handleEdit = (e) => {
-    e.preventDefault();
+  const handleDelete = (e) => {
     const answer = window.confirm("Czy napewno chcesz usunąć użytkownika?");
     if (answer) {
       dispatch(deleteUser(userId, history));
@@ -49,13 +48,13 @@ const UserInfo = () => {
       {user.lastName}
       {user.firstName}
       <ButtonsContainer>
-        <Link to="/dashboard/users/page/:1">
+        <Link to="/dashboard/users">
           <Button black>
             <ButtonImg src={closeButtonIcon} alt="przycisk zamknij" />
             <ButtonText>Zamknij</ButtonText>
           </Button>
         </Link>
-        <Button red onClick={(e) => handleEdit(e)}>
+        <Button red onClick={(e) => handleDelete(e)}>
           <ButtonImg src={deleteButtonIcon} alt="przycisk usuń" />
           <ButtonText>Usuń</ButtonText>
         </Button>

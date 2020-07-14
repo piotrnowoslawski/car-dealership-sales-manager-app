@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   PaginationNav,
   PaginationList,
@@ -21,6 +21,10 @@ const Pagination = ({
   const decrementPage = currentPage - 1;
   const incrementPage = currentPage + 1;
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [totalItems]);
+
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     itemsNumbers.push(i);
   }
@@ -29,7 +33,7 @@ const Pagination = ({
       <PaginationNav>
         {currentPage === 1 ? null : (
           <StyledLinkArrow
-            to={`/dashboard/users/page/:${decrementPage}`}
+            to={`/dashboard/users`}
             onClick={() => setCurrentPage(decrementPage)}
           >
             <StyledLinkImg
@@ -43,7 +47,7 @@ const Pagination = ({
             <PaginationListItem key={number}>
               <StyledLink
                 className={`${currentPage === index + 1 ? "active" : null}`}
-                to={`/dashboard/users/page/:${number}`}
+                to={`/dashboard/users`}
                 onClick={() => handlePaginate(number)}
               >
                 {number}
@@ -53,7 +57,7 @@ const Pagination = ({
         </PaginationList>
         {currentPage === itemsNumbers.length ? null : (
           <StyledLinkArrow
-            to={`/dashboard/users/page/:${incrementPage}`}
+            to={`/dashboard/users`}
             onClick={() => setCurrentPage(incrementPage)}
           >
             <StyledLinkImg

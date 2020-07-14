@@ -27,7 +27,7 @@ const DashBoard = () => {
           {
             id: "2",
             title: "Użytkownicy",
-            link: "/dashboard/users/page/:1",
+            link: "/dashboard/users",
             iconName: "użytkownicy",
             iconPath: "users",
           },
@@ -40,8 +40,7 @@ const DashBoard = () => {
           <Route path="/dashboard/users/new" component={UserAdd} />
           <Route path="/dashboard/users/:userId/edit" component={UserEdit} />
           <Route exact path="/dashboard/users/:userId" component={UserInfo} />
-          <Route exact path="/dashboard/users/page/1" component={Users} />
-          <Route path="/dashboard/users/page/:pageNumber" component={Users} />
+          <Route exact path="/dashboard/users/" component={Users} />
         </Switch>
       </Wrapper>
     </Container>

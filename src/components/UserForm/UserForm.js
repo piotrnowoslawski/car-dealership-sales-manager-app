@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Prompt } from "react-router-dom";
 import {
   DashboardHeader,
   DashboardHeaderImg,
@@ -91,6 +92,7 @@ const UserForm = ({
         />
       </DashboardHeader>
       <form onSubmit={(e) => handleSubmit(e)}>
+        <Prompt message="Czy chcesz wykonać operację?" />
         <div>
           <label htmlFor="firstName">Imię:</label>
           <input

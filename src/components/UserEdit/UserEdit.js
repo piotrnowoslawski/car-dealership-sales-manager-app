@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "data/fetch/userInfo.fetch";
@@ -19,13 +19,7 @@ const UserEdit = () => {
     dispatch(editUser(user, history));
   };
 
-  const handleCancel = (e) => {
-    e.preventDefault();
-    const answer = window.confirm("Czy napewno chcesz anulować?");
-    if (answer) {
-      history.push(`/dashboard/users/page/:1`);
-    } else return;
-  };
+  const handleCancel = (e) => {};
 
   return (
     <>
