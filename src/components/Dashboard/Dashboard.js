@@ -39,8 +39,9 @@ const DashBoard = () => {
           <Route path="/dashboard/control-panel" component={DashboardPanel} />
           <Route path="/dashboard/users/new" component={UserAdd} />
           <Route path="/dashboard/users/:userId/edit" component={UserEdit} />
-          <Route path="/dashboard/users/:userId" component={UserInfo} />
-          <Route path="/dashboard/users" component={Users} />
+          <Route exact path="/dashboard/users/:userId" component={UserInfo} />
+          <Route exact path="/dashboard/users" component={Users} />
+          <Route path="/dashboard/users/page/:pageNumber" component={Users} />
         </Switch>
       </Wrapper>
     </Container>

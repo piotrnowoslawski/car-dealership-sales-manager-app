@@ -11,12 +11,11 @@ import { Search } from "components";
 import {
   UsersTableContainer,
   UsersTableHeader,
-  UsersList,
-  UsersListItem,
-  StyledLink,
-  LinkSpan,
+  UsersTableFooter,
 } from "./Users.css";
 import { TableHeaderList } from "components";
+import { UsersTable } from "components";
+import { Pagination } from "components";
 import {
   ButtonsContainer,
   Button,
@@ -29,7 +28,13 @@ import addButtonIcon from "images/buttons/button-add-user-icon.png";
 const Users = () => {
   const users = useSelector((state) => state.usersReducer.users);
   const [usersToDisplay, setUsersToDisplay] = useState(users);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [usersPerPage, setUsersPerPage] = useState(10);
   const dispatch = useDispatch();
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = usersToDisplay.slice(indexOfFirstUser, indexOfLastUser);
+
   useEffect(() => {
     dispatch(getUsers());
   }, []);
@@ -46,6 +51,16 @@ const Users = () => {
         item.peselNumber.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setUsersToDisplay(searched);
+  };
+
+  const handlePaginate = (number) => setCurrentPage(number);
+
+  const decrementPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const incrementPage = () => {
+    setCurrentPage(currentPage + 1);
   };
 
   return (
@@ -69,21 +84,14 @@ const Users = () => {
             ]}
           />
         </UsersTableHeader>
-        <UsersList>
-          {usersToDisplay.map((item, index) => (
-            <UsersListItem key={item._id}>
-              <StyledLink to={`/dashboard/users/${item._id}`}>
-                <LinkSpan>{index + 1}</LinkSpan>
-                <LinkSpan>{item.lastName}</LinkSpan>
-                <LinkSpan>{item.firstName}</LinkSpan>
-                <LinkSpan>{}</LinkSpan>
-                <LinkSpan>{}</LinkSpan>
-                <LinkSpan>{}</LinkSpan>
-                <LinkSpan>{item.peselNumber}</LinkSpan>
-              </StyledLink>
-            </UsersListItem>
-          ))}
-        </UsersList>
+        <UsersTable users={currentUsers} />
+        <UsersTableFooter>
+          <Pagination
+            itemsPerPage={usersPerPage}
+            totalItems={usersToDisplay.length}
+            handlePaginate={handlePaginate}
+          />
+        </UsersTableFooter>
       </UsersTableContainer>
       <ButtonsContainer>
         <Link to="/dashboard/users/new">
