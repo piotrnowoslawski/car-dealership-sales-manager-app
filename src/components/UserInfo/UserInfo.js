@@ -49,7 +49,7 @@ const UserInfo = () => {
       {user.lastName}
       {user.firstName}
       <ButtonsContainer>
-        <Link to="/dashboard/users">
+        <Link to="/dashboard/users/page/:1">
           <Button black>
             <ButtonImg src={closeButtonIcon} alt="przycisk zamknij" />
             <ButtonText>Zamknij</ButtonText>

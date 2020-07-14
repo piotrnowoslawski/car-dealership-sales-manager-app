@@ -16,7 +16,7 @@ const UserAdd = () => {
     e.preventDefault();
     const answer = window.confirm("Czy napewno chcesz anulować?");
     if (answer) {
-      history.push(`/dashboard/users/`);
+      history.push(`/dashboard/users/page/:1`);
     } else return;
   };
 

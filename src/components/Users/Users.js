@@ -55,14 +55,6 @@ const Users = () => {
 
   const handlePaginate = (number) => setCurrentPage(number);
 
-  const decrementPage = () => {
-    setCurrentPage(currentPage - 1);
-  };
-
-  const incrementPage = () => {
-    setCurrentPage(currentPage + 1);
-  };
-
   return (
     <>
       <DashboardHeader>
@@ -89,7 +81,9 @@ const Users = () => {
           <Pagination
             itemsPerPage={usersPerPage}
             totalItems={usersToDisplay.length}
+            currentPage={currentPage}
             handlePaginate={handlePaginate}
+            setCurrentPage={setCurrentPage}
           />
         </UsersTableFooter>
       </UsersTableContainer>
