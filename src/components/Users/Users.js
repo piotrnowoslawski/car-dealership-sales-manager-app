@@ -7,7 +7,13 @@ import {
   DashboardHeaderImg,
   DashboardHeaderText,
 } from "components/DashboardHeader/DashboardHeader";
-import { TableHeaderList, UsersTable, Search, Pagination } from "components";
+import {
+  TableHeaderList,
+  UsersTable,
+  Search,
+  Pagination,
+  TableNoDataInfo,
+} from "components";
 import {
   UsersTableContainer,
   UsersTableHeader,
@@ -24,6 +30,7 @@ import addButtonIcon from "images/buttons/button-add-user-icon.png";
 
 const Users = () => {
   const users = useSelector((state) => state.usersReducer.users);
+  const pending = useSelector((state) => state.usersReducer.pending);
   const [usersToDisplay, setUsersToDisplay] = useState(users);
   const [currentPage, setCurrentPage] = useState(1);
   const [rememberPage, setRememberPage] = useState(1);
@@ -88,7 +95,11 @@ const Users = () => {
             ]}
           />
         </UsersTableHeader>
-        <UsersTable users={currentUsers} />
+        {pending ? (
+          <TableNoDataInfo text={"Wczytywanie danych"} />
+        ) : (
+          <UsersTable users={currentUsers} />
+        )}
         <UsersTableFooter>
           <Pagination
             itemsPerPage={usersPerPage}

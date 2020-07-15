@@ -8,7 +8,7 @@ import theme from "utils/theme";
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Router>
+      <Router basename={process.env.NODE_ENV === "development" ? "/" : "/cds"}>
         <GlobalStyle />
         <TopBar />
         <Switch>

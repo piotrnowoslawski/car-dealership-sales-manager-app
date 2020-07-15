@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, StyledLink, LogoImg, LogoText } from "./TopBar.css";
+import { Logout } from "components";
 import logo from "images/logo/logo-blue.png";
 
 const TopBar = () => {
@@ -10,6 +11,7 @@ const TopBar = () => {
           <LogoImg src={logo} alt="logo" />
           <LogoText>CDS Manager</LogoText>
         </StyledLink>
+        <Logout />
       </Container>
     </>
   );

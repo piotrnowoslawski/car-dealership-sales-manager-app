@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   ButtonsContainer,
   Button,
@@ -15,11 +16,18 @@ import {
 import logInIcon from "images/buttons/button-login-icon.png";
 
 const Login = () => {
+  // const users = useSelector((state) => state.usersReducer.users);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState({
+    login: "",
+    password: "",
+  });
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(JSON.stringify(user));
   };
   return (
     <>
@@ -30,6 +38,7 @@ const Login = () => {
             type="text"
             id="username"
             placeholder="wprowadź login..."
+            onChange={(e) => setUser({ ...user, login: e.target.value })}
           />
         </LoginInputField>
         <LoginInputField>
@@ -38,6 +47,7 @@ const Login = () => {
             type="password"
             id="password"
             placeholder="wprowadź hasło ..."
+            onChange={(e) => setUser({ ...user, password: e.target.value })}
           />
         </LoginInputField>
         <ButtonsContainer>

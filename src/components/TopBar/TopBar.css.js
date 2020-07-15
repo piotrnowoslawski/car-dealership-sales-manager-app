@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Container = styled.nav`
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   height: 50px;
   background: ${({ theme }) => theme.colors.white.normal};
