@@ -9,7 +9,6 @@ const TopBar = () => {
         <StyledLink to="/dashboard">
           <LogoImg src={logo} alt="logo" />
           <LogoText>CDS Manager</LogoText>
-          {/* <LogoText>Car Dealership Sales Manager</LogoText> */}
         </StyledLink>
       </Container>
     </>

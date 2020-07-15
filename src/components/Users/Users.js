@@ -7,15 +7,12 @@ import {
   DashboardHeaderImg,
   DashboardHeaderText,
 } from "components/DashboardHeader/DashboardHeader";
-import { Search } from "components";
+import { TableHeaderList, UsersTable, Search, Pagination } from "components";
 import {
   UsersTableContainer,
   UsersTableHeader,
   UsersTableFooter,
 } from "./Users.css";
-import { TableHeaderList } from "components";
-import { UsersTable } from "components";
-import { Pagination } from "components";
 import {
   ButtonsContainer,
   Button,
@@ -29,6 +26,7 @@ const Users = () => {
   const users = useSelector((state) => state.usersReducer.users);
   const [usersToDisplay, setUsersToDisplay] = useState(users);
   const [currentPage, setCurrentPage] = useState(1);
+  const [rememberPage, setRememberPage] = useState(1);
   const [usersPerPage, setUsersPerPage] = useState(10);
   const dispatch = useDispatch();
   const indexOfLastUser = currentPage * usersPerPage;
@@ -51,9 +49,23 @@ const Users = () => {
         item.peselNumber.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setUsersToDisplay(searched);
+
+    const input = document.getElementById("search-users");
+    let timeout = null;
+
+    if (input.value.length == 0) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        setCurrentPage(rememberPage);
+        setRememberPage(rememberPage);
+      }, 100);
+    }
   };
 
-  const handlePaginate = (number) => setCurrentPage(number);
+  const handlePaginate = (number) => {
+    setCurrentPage(number);
+    setRememberPage(number);
+  };
 
   return (
     <>
@@ -84,6 +96,7 @@ const Users = () => {
             currentPage={currentPage}
             handlePaginate={handlePaginate}
             setCurrentPage={setCurrentPage}
+            setRememberPage={setRememberPage}
           />
         </UsersTableFooter>
       </UsersTableContainer>

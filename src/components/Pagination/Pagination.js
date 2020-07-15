@@ -16,6 +16,7 @@ const Pagination = ({
   currentPage,
   handlePaginate,
   setCurrentPage,
+  setRememberPage,
 }) => {
   const itemsNumbers = [];
   const decrementPage = currentPage - 1;
@@ -34,7 +35,10 @@ const Pagination = ({
         {currentPage === 1 ? null : (
           <StyledLinkArrow
             to={`/dashboard/users`}
-            onClick={() => setCurrentPage(decrementPage)}
+            onClick={() => {
+              setCurrentPage(decrementPage);
+              setRememberPage(decrementPage);
+            }}
           >
             <StyledLinkImg
               src={paginationArrowPrevIcon}
@@ -58,7 +62,10 @@ const Pagination = ({
         {currentPage === itemsNumbers.length ? null : (
           <StyledLinkArrow
             to={`/dashboard/users`}
-            onClick={() => setCurrentPage(incrementPage)}
+            onClick={() => {
+              setCurrentPage(incrementPage);
+              setRememberPage(incrementPage);
+            }}
           >
             <StyledLinkImg
               src={paginationArrowNextIcon}

@@ -1,13 +1,15 @@
 import React from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 import { Container, PathNameInfo } from "./Dashboard.css";
-import { Navigation } from "components";
-import { Wrapper } from "components";
-import { DashboardPanel } from "components";
-import { Users } from "components";
-import { UserInfo } from "components";
-import { UserAdd } from "components";
-import { UserEdit } from "components";
+import {
+  Navigation,
+  Wrapper,
+  DashboardPanel,
+  Users,
+  UserInfo,
+  UserAdd,
+  UserEdit,
+} from "components";
 
 const DashBoard = () => {
   const location = useLocation();

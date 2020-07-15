@@ -13,10 +13,10 @@ const Search = ({ handleSearch }) => {
   return (
     <>
       <SerachForm>
-        <SearchLabel htmlFor="search">Szybkie wyszukiwanie:</SearchLabel>
+        <SearchLabel htmlFor="search-users">Szybkie wyszukiwanie:</SearchLabel>
         <SearchInputContainer>
           <SerachInput
-            id="search"
+            id="search-users"
             placeholder="wprowadź ..."
             value={searchValue}
             onChange={(e) => {
