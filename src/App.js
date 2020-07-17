@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Dashboard, TopBar, Home } from "components";
+import { PrivateRoute, Dashboard, TopBar, Home } from "components";
 import GlobalStyle from "index.css";
 import theme from "utils/theme";
 
@@ -13,7 +13,7 @@ function App() {
         <TopBar />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/dashboard" component={Dashboard} />
         </Switch>
       </Router>
     </ThemeProvider>

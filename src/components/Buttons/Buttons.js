@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const ButtonsContainer = styled.div`
+export const ButtonsContainer = styled.div `
   display: flex;
   margin-top: 20px;
 `;
 
-export const Button = styled.button`
+export const Button = styled.button `
   display: flex;
   height: 40px;
   border-radius: 5px;
@@ -23,10 +23,14 @@ export const Button = styled.button`
   transition: 0.5s;
   cursor: pointer;
 
-  &:hover {
+  &:disabled {
+    background: ${({ theme }) => theme.colors.grey.dark};
+  }
+
+  &:hover:not([disabled]) {
     background: ${(props) =>
       props.blue
-        ? ({ theme }) => theme.colors.black.normal
+        ? ({ theme }) => theme.colors.green.main
         : ({ theme }) => theme.colors.blue.main};
   }
 
@@ -35,12 +39,12 @@ export const Button = styled.button`
   }
 `;
 
-export const ButtonImg = styled.img`
+export const ButtonImg = styled.img `
   height: 32px;
   margin: 4px 5px 0 10px;
 `;
 
-export const ButtonText = styled.span`
+export const ButtonText = styled.span `
   line-height: 40px;
   font-size: 1.1rem;
   font-weight: 600;
@@ -48,7 +52,7 @@ export const ButtonText = styled.span`
   color: ${({ theme }) => theme.colors.white.normal};
 `;
 
-export const ButtonTransparent = styled.button`
+export const ButtonTransparent = styled.button `
   background: transparent;
   height: 30px;
   padding: 0px 10px;

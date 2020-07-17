@@ -14,19 +14,20 @@ const UsersTable = ({ users }) => {
         <TableNoDataInfo text={"Brak użytkowników"} />
       ) : (
         <UsersList>
-          {users.map((item, index) => (
-            <UsersListItem key={item._id}>
-              <StyledLink to={`/dashboard/users/${item._id}`}>
-                <LinkSpan>{index + 1}</LinkSpan>
-                <LinkSpan>{item.lastName}</LinkSpan>
-                <LinkSpan>{item.firstName}</LinkSpan>
-                <LinkSpan>{}</LinkSpan>
-                <LinkSpan>{}</LinkSpan>
-                <LinkSpan>{}</LinkSpan>
-                <LinkSpan>{item.peselNumber}</LinkSpan>
-              </StyledLink>
-            </UsersListItem>
-          ))}
+          {users &&
+            users.map((item, index) => (
+              <UsersListItem key={item._id}>
+                <StyledLink to={`/dashboard/users/${item._id}`}>
+                  <LinkSpan>{index + 1}</LinkSpan>
+                  <LinkSpan>{item.lastName}</LinkSpan>
+                  <LinkSpan>{item.firstName}</LinkSpan>
+                  <LinkSpan>{}</LinkSpan>
+                  <LinkSpan>{}</LinkSpan>
+                  <LinkSpan>{}</LinkSpan>
+                  <LinkSpan>{item.peselNumber}</LinkSpan>
+                </StyledLink>
+              </UsersListItem>
+            ))}
         </UsersList>
       )}
     </>

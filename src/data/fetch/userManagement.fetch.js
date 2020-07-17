@@ -1,9 +1,8 @@
-import { ADD_USER, EDIT_USER, DELETE_USER } from "data/constans";
-const api = "https://salty-journey-27131.herokuapp.com/api";
+import { API, ADD_USER, EDIT_USER, DELETE_USER } from "data/constans";
 
 export const addUser = (data, history) => {
   return (dispatch) => {
-    fetch(`${api}/users`, {
+    fetch(`${API}/users`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: new Headers({
@@ -23,7 +22,7 @@ export const addUser = (data, history) => {
 
 export const editUser = (data, history) => {
   return (dispatch) => {
-    fetch(`${api}/users/${data._id}`, {
+    fetch(`${API}/users/${data._id}`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: new Headers({
@@ -43,7 +42,7 @@ export const editUser = (data, history) => {
 
 export const deleteUser = (data, history) => {
   return (dispatch) => {
-    fetch(`${api}/users/${data}`, {
+    fetch(`${API}/users/${data}`, {
       method: "DELETE",
       body: JSON.stringify({ data }),
       headers: new Headers({

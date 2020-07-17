@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { login, logout } from "data/actions/auth.action";
 import {
   ButtonsContainer,
   Button,
@@ -16,24 +18,29 @@ import {
 import logInIcon from "images/buttons/button-login-icon.png";
 
 const Login = () => {
-  // const users = useSelector((state) => state.usersReducer.users);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [user, setUser] = useState({
     login: "",
     password: "",
   });
+  const [submitted, setSubmitted] = useState(false);
+  const loggingIn = useSelector((state) => state.authReducer.loggingIn);
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    dispatch(logout());
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(JSON.stringify(user));
+    setSubmitted(true);
+    dispatch(login(user.login, user.password, history));
   };
   return (
     <>
       <LoginForm onSubmit={(e) => handleSubmit(e)}>
         <LoginInputField>
-          <LoginInputLabel htmlFor={username}>Login:</LoginInputLabel>
+          <LoginInputLabel htmlFor="username">Login:</LoginInputLabel>
           <LoginInput
             type="text"
             id="username"
@@ -42,7 +49,7 @@ const Login = () => {
           />
         </LoginInputField>
         <LoginInputField>
-          <LoginInputLabel htmlFor={password}>Hasło:</LoginInputLabel>
+          <LoginInputLabel htmlFor="password">Hasło:</LoginInputLabel>
           <LoginInput
             type="password"
             id="password"
@@ -53,7 +60,11 @@ const Login = () => {
         <ButtonsContainer>
           <ButtonTransparent>Zmień hasło</ButtonTransparent>
           <ButtonTransparent>Hasło zablokowane</ButtonTransparent>
-          <Button blue className="login__button">
+          <Button
+            blue
+            className="login__button"
+            disabled={user.login === "" || user.password === "" ? true : false}
+          >
             <ButtonImg src={logInIcon} alt="ikona logowania" />
             <ButtonText>Zaloguj</ButtonText>
           </Button>
