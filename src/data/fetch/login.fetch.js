@@ -11,7 +11,6 @@ export const userLogin = (username, password) => {
     .then(handleResponse)
     .then((user) => {
       localStorage.setItem("user", JSON.stringify(user));
-      console.log(localStorage);
       return user;
     });
 };
@@ -28,7 +27,6 @@ function handleResponse(res) {
         userLogout();
         window.location.reload(true);
       }
-      console.log(data.error);
       const error = data && data.error;
       return Promise.reject(error);
     }

@@ -37,3 +37,23 @@ export const LogoTextSpan = styled.span`
   font-size: 1.6rem;
   color: ${({ theme }) => theme.colors.black.normal};
 `;
+
+export const AlertContainer = styled.div`
+  display: flex;
+  width: 90%;
+  padding: 0 ${({ theme }) => theme.spacing.xl}px;
+  margin: auto;
+  margin-top: 5px;
+  height: 50px;
+`;
+
+export const AlertContainerSpan = styled.span`
+  color: ${({ theme }) => theme.colors.red.main};
+  line-height: 50px;
+  font-size: 1.6rem;
+  font-weight: 600;
+`;
+
+export const AlertContainerImg = styled.img`
+  height: 50px;
+`;

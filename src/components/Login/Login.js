@@ -34,7 +34,10 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    dispatch(login(user.login, user.password, history));
+    setSubmitted(true);
+    if (user.login && user.password) {
+      dispatch(login(user.login, user.password, history));
+    }
   };
   return (
     <>

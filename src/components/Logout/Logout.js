@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { LogoutButton, LogoutButtonImg, LogoutButtonText } from "./Logout.css";
 import logoutIcon from "images/buttons/button-logout-icon.png";
 import { logout } from "data/actions/auth.action";

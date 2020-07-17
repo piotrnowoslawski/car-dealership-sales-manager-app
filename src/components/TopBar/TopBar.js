@@ -1,12 +1,12 @@
 import React from "react";
 import { Container, StyledLink, LogoImg, LogoText } from "./TopBar.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { TopBarUserLogged } from "components";
 import logo from "images/logo/logo-blue.png";
 
 const TopBar = () => {
   const user = useSelector((state) => state.authReducer.user);
-  console.log(user);
+  const loggedIn = useSelector((state) => state.authReducer.loggedIn);
   return (
     <>
       <Container>
@@ -14,7 +14,7 @@ const TopBar = () => {
           <LogoImg src={logo} alt="logo" />
           <LogoText>CDS Manager</LogoText>
         </StyledLink>
-        {user ? <TopBarUserLogged user={user} /> : null}
+        {loggedIn ? <TopBarUserLogged user={user} /> : null}
       </Container>
     </>
   );
