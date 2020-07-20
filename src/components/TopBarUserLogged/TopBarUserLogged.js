@@ -11,7 +11,7 @@ const TopBarUserLogged = ({ user }) => {
     <>
       <LoginUserContainer>
         <LoginUserTitle>Użytkownik:</LoginUserTitle>
-        <LoginUsername>{`${user.firstName} ${user.lastName}`}</LoginUsername>
+        <LoginUsername>{`${user.personalData.firstName} ${user.personalData.lastName}`}</LoginUsername>
       </LoginUserContainer>
       <Logout />
     </>

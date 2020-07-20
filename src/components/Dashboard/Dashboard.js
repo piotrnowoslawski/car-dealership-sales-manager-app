@@ -9,6 +9,9 @@ import {
   UserInfo,
   UserAdd,
   UserEdit,
+  Team,
+  Sale,
+  Reports,
 } from "components";
 
 const DashBoard = () => {
@@ -33,6 +36,27 @@ const DashBoard = () => {
             iconName: "użytkownicy",
             iconPath: "users",
           },
+          {
+            id: "3",
+            title: "Mój zespół",
+            link: "/dashboard/team",
+            iconName: "mój zespół",
+            iconPath: "team",
+          },
+          {
+            id: "4",
+            title: "Sprzedaż",
+            link: "/dashboard/sale",
+            iconName: "sprzedaż",
+            iconPath: "sale",
+          },
+          {
+            id: "5",
+            title: "Raporty",
+            link: "/dashboard/reports",
+            iconName: "raporty",
+            iconPath: "reports",
+          },
         ]}
       />
       <Wrapper>
@@ -43,6 +67,9 @@ const DashBoard = () => {
           <Route path="/dashboard/users/:userId/edit" component={UserEdit} />
           <Route exact path="/dashboard/users/:userId" component={UserInfo} />
           <Route exact path="/dashboard/users/" component={Users} />
+          <Route path="/dashboard/team" component={Team} />
+          <Route path="/dashboard/sale" component={Sale} />
+          <Route path="/dashboard/reports" component={Reports} />
         </Switch>
       </Wrapper>
     </Container>

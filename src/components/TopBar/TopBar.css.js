@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 
 export const Container = styled.nav`
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
   justify-content: space-between;
   width: 100%;
   height: 50px;

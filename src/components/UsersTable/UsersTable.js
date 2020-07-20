@@ -10,7 +10,7 @@ import { TableNoDataInfo } from "components";
 const UsersTable = ({ users }) => {
   return (
     <>
-      {users.length === 0 ? (
+      {users && users.length === 0 ? (
         <TableNoDataInfo text={"Brak użytkowników"} />
       ) : (
         <UsersList>
@@ -19,12 +19,12 @@ const UsersTable = ({ users }) => {
               <UsersListItem key={item._id}>
                 <StyledLink to={`/dashboard/users/${item._id}`}>
                   <LinkSpan>{index + 1}</LinkSpan>
-                  <LinkSpan>{item.lastName}</LinkSpan>
-                  <LinkSpan>{item.firstName}</LinkSpan>
+                  <LinkSpan>{item.personalData.lastName}</LinkSpan>
+                  <LinkSpan>{item.personalData.firstName}</LinkSpan>
                   <LinkSpan>{}</LinkSpan>
                   <LinkSpan>{}</LinkSpan>
-                  <LinkSpan>{}</LinkSpan>
-                  <LinkSpan>{item.peselNumber}</LinkSpan>
+                  <LinkSpan>{item.personalData.gender}</LinkSpan>
+                  <LinkSpan>{item.personalData.pesel}</LinkSpan>
                 </StyledLink>
               </UsersListItem>
             ))}

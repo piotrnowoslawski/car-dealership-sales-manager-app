@@ -6,6 +6,12 @@ import {
   DashboardHeaderText,
 } from "components/DashboardHeader/DashboardHeader";
 import {
+  UserFormContainer,
+  SectionWrapper,
+  SectionWrapperHeader,
+} from "./UserForm.css";
+import { UserFormPersonalData } from "components";
+import {
   ButtonsContainer,
   Button,
   ButtonImg,
@@ -23,63 +29,75 @@ const UserForm = ({
   headerIconTitle,
   submitText,
 }) => {
-  const [id, setId] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [secondName, setSecondName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [peselNumber, setPeselNumber] = useState("");
-  const [gender, setGender] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
-  const [street, setStreet] = useState("");
-  const [propertyNumber, setPropertyNumber] = useState("");
-  const [apartmentNumber, setApartmentNumber] = useState("");
-  const [city, setCity] = useState("");
-  const [zipCode, setZipCode] = useState("");
-  const [email, setEmail] = useState("");
-  const [privetPhone, setPrivetPhone] = useState("");
-  const [businessPhone, setBusinessPhone] = useState("");
-  const [jobPosition, setJobPosition] = useState("");
-  const [workplace, setWorkplace] = useState("");
-  const [education, setEducation] = useState("");
-  const [dateOfEmployment, setDateOfEmployment] = useState("");
-  const [dateOfTermination, setDateOfTermination] = useState("");
-
-  useEffect(() => {
-    if (user) {
-      setId(user._id);
-      setFirstName(user.firstName);
-      setSecondName(user.secondName);
-      setLastName(user.lastName);
-      setPeselNumber(user.peselNumber);
-    }
-  }, [user]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const user = {
-      _id: id,
-      firstName: firstName,
-      secondName: secondName,
-      lastName: lastName,
-      peselNumber: peselNumber,
+  const [dropdownTypes, setDropdownTypes] = useState();
+  const [form, setForm] = useState({
+    _id: "",
+    personalData: {
+      firstName: "",
+      secondName: "",
+      lastName: "",
+      pesel: "",
       gender: "",
       dateOfBirth: "",
+    },
+    job: {
+      position: "",
+      workplace: "",
+      dateOfEmployment: "",
+      dateOfTermination: "",
+      supervisor: "",
+    },
+    address: {
       street: "",
       propertyNumber: "",
       apartmentNumber: "",
-      city: "",
       zipCode: "",
-      email: "",
-      privetPhone: "",
+      city: "",
+      province: "",
+      country: "",
+    },
+    contacts: {
+      emial: "",
+      privatePhone: "",
       businessPhone: "",
-      jobPosition: "",
-      workplace: "",
-      education: "",
-      dateOfEmployment: "",
-      dateOfTermination: "",
-    };
-    handleForm(user);
+      landlinePhone: "",
+    },
+    apps: {
+      skype: "",
+    },
+    role: "",
+  });
+
+  const handleInput = (e, category) => {
+    setForm({
+      ...form,
+      [category]: {
+        ...form[category],
+        [e.target.id]: e.target.value,
+      },
+    });
+  };
+
+  const handleDropdown = (e, id, selected, category, key, value) => {
+    setDropdownTypes(
+      dropdownTypes.map((item) =>
+        item.id === id
+          ? { ...item, selected: !selected }
+          : { ...item, selected: false }
+      )
+    );
+    setForm({
+      ...form,
+      [category]: {
+        ...form[category],
+        [key]: value,
+      },
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleForm(form);
   };
 
   return (
@@ -91,48 +109,29 @@ const UserForm = ({
           alt={headerIconTitle}
         />
       </DashboardHeader>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <UserFormContainer onSubmit={(e) => handleSubmit(e)}>
         <Prompt message="Czy chcesz wykonać operację?" />
-        <div>
-          <label htmlFor="firstName">Imię:</label>
-          <input
-            type="text"
-            id="firstName"
-            placeholder="imię"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="secondName">Drugie imię:</label>
-          <input
-            type="text"
-            id="secondName"
-            placeholder="drugie imię"
-            value={secondName}
-            onChange={(e) => setSecondName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="lastName">Nazwisko:</label>
-          <input
-            type="text"
-            id="lastName"
-            placeholder="nazwisko"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="peselNumber">Pesel:</label>
-          <input
-            type="text"
-            id="peselNumber"
-            placeholder="pesel"
-            value={peselNumber}
-            onChange={(e) => setPeselNumber(e.target.value)}
-          />
-        </div>
+        <UserFormPersonalData
+          user={user}
+          form={form}
+          setForm={setForm}
+          dropdownTypes={dropdownTypes}
+          setDropdownTypes={setDropdownTypes}
+          handleInput={handleInput}
+          toggleSelected={handleDropdown}
+        />
+        <SectionWrapper>
+          <SectionWrapperHeader>Dane zatrudnienia:</SectionWrapperHeader>
+        </SectionWrapper>
+        <SectionWrapper>
+          <SectionWrapperHeader>Dane adresowe:</SectionWrapperHeader>
+        </SectionWrapper>
+        <SectionWrapper>
+          <SectionWrapperHeader>Kontakt:</SectionWrapperHeader>
+        </SectionWrapper>
+        <SectionWrapper>
+          <SectionWrapperHeader>Aplikacje:</SectionWrapperHeader>
+        </SectionWrapper>
         <ButtonsContainer>
           <Button black onClick={(e) => handleCancel(e)}>
             <ButtonImg src={cancelButtonIcon} alt="przycisk anuluj" />
@@ -143,7 +142,7 @@ const UserForm = ({
             <ButtonText>{submitText}</ButtonText>
           </Button>
         </ButtonsContainer>
-      </form>
+      </UserFormContainer>
     </>
   );
 };

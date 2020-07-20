@@ -9,6 +9,12 @@ import {
   DashboardHeaderText,
 } from "components/DashboardHeader/DashboardHeader";
 import {
+  UserViewContainer,
+  UserViewHeader,
+  UserViewHeaderName,
+  UserViewHeaderJobPosition,
+} from "./UserInfo.css";
+import {
   ButtonsContainer,
   Button,
   ButtonImg,
@@ -45,8 +51,14 @@ const UserInfo = () => {
           alt="ikona widoku użytkownika"
         />
       </DashboardHeader>
-      {user.lastName}
-      {user.firstName}
+      <UserViewContainer>
+        {Object.keys(user).length !== 0 ? (
+          <UserViewHeader>
+            <UserViewHeaderName>{`${user.personalData.lastName} ${user.personalData.firstName}`}</UserViewHeaderName>
+            <UserViewHeaderJobPosition>{`${user.job.position}`}</UserViewHeaderJobPosition>
+          </UserViewHeader>
+        ) : null}
+      </UserViewContainer>
       <ButtonsContainer>
         <Link to="/dashboard/users">
           <Button black>

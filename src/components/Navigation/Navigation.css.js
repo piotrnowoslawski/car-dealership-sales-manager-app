@@ -6,8 +6,13 @@ const active = "active";
 export const Container = styled.nav`
   background: ${({ theme }) => theme.colors.grey.light};
   height: 100vh;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  z-index: 10;
   min-width: 240px;
   overflow: hidden;
+  border-top: 10px solid ${({ theme }) => theme.colors.blue.main};
 `;
 
 export const List = styled.ul`
@@ -16,7 +21,7 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
-  height: 40px;
+  height: 35px;
   margin-bottom: 15px;
 `;
 
@@ -34,9 +39,9 @@ export const StyledLink = styled(NavLink).attrs({ active })`
     content: "";
     width: 0;
     height: 0;
-    border-top: 10px solid transparent;
-    border-right: 16px solid ${({ theme }) => theme.colors.grey.light};
-    border-bottom: 10px solid transparent;
+    border-top: 7px solid transparent;
+    border-right: 17px solid ${({ theme }) => theme.colors.grey.light};
+    border-bottom: 7px solid transparent;
   }
 
   &.${active} {
@@ -50,7 +55,7 @@ export const StyledLink = styled(NavLink).attrs({ active })`
 
 export const ListItemImg = styled.img`
   display: block;
-  height: 40px;
+  height: 35px;
   margin-right: 15px;
 
   ${StyledLink}:hover & {
@@ -59,8 +64,9 @@ export const ListItemImg = styled.img`
 `;
 
 export const ListItemText = styled.span`
-  line-height: 40px;
+  line-height: 35px;
   font-weight: 600;
+  font-size: 1rem;
   color: ${({ theme }) => theme.colors.black.normal};
   transition: 0.5s;
 
