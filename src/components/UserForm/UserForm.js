@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Prompt } from "react-router-dom";
 import {
   DashboardHeader,
@@ -10,7 +10,13 @@ import {
   SectionWrapper,
   SectionWrapperHeader,
 } from "./UserForm.css";
-import { UserFormPersonalData } from "components";
+import {
+  UserFormPersonalData,
+  UserFormJob,
+  UserFormAddress,
+  UserFormContact,
+  UserFormApps,
+} from "components";
 import {
   ButtonsContainer,
   Button,
@@ -120,18 +126,10 @@ const UserForm = ({
           handleInput={handleInput}
           toggleSelected={handleDropdown}
         />
-        <SectionWrapper>
-          <SectionWrapperHeader>Dane zatrudnienia:</SectionWrapperHeader>
-        </SectionWrapper>
-        <SectionWrapper>
-          <SectionWrapperHeader>Dane adresowe:</SectionWrapperHeader>
-        </SectionWrapper>
-        <SectionWrapper>
-          <SectionWrapperHeader>Kontakt:</SectionWrapperHeader>
-        </SectionWrapper>
-        <SectionWrapper>
-          <SectionWrapperHeader>Aplikacje:</SectionWrapperHeader>
-        </SectionWrapper>
+        <UserFormJob />
+        <UserFormAddress />
+        <UserFormContact />
+        <UserFormApps />
         <ButtonsContainer>
           <Button black onClick={(e) => handleCancel(e)}>
             <ButtonImg src={cancelButtonIcon} alt="przycisk anuluj" />
