@@ -6,7 +6,10 @@ import {
   InputField,
   InputLabel,
   Input,
+  InputCheckImg,
+  WrapperForCheck,
 } from "../UserForm/UserForm.css";
+import checkIcon from "images/form/form-check-icon.png";
 
 const UserFormPersonalData = ({
   user,
@@ -59,51 +62,81 @@ const UserFormPersonalData = ({
         <SectionWrapperHeader>Dane personalne:</SectionWrapperHeader>
         <InputField>
           <InputLabel htmlFor="firstName">Imię:</InputLabel>
-          <Input
-            type="text"
-            id="firstName"
-            placeholder="imię"
-            value={form.personalData.firstName}
-            onChange={(e) => handleInput(e, "personalData")}
-          />
+          <WrapperForCheck>
+            <Input
+              type="text"
+              id="firstName"
+              placeholder="imię"
+              value={form.personalData.firstName}
+              onChange={(e) => handleInput(e, "personalData")}
+            />
+            {form.personalData.firstName ? (
+              <InputCheckImg src={checkIcon} alt="ikona sprawdzenia" />
+            ) : null}
+          </WrapperForCheck>
         </InputField>
         <InputField>
           <InputLabel htmlFor="secondName">Drugie imię:</InputLabel>
-          <Input
-            type="text"
-            id="secondName"
-            placeholder="drugie imię"
-            value={form.personalData.secondName}
-            onChange={(e) => handleInput(e, "personalData")}
-          />
+          <WrapperForCheck>
+            <Input
+              type="text"
+              id="secondName"
+              placeholder="drugie imię"
+              value={form.personalData.secondName}
+              onChange={(e) => handleInput(e, "personalData")}
+            />
+            {form.personalData.secondName ? (
+              <InputCheckImg src={checkIcon} alt="ikona sprawdzenia" />
+            ) : null}
+          </WrapperForCheck>
         </InputField>
         <InputField>
           <InputLabel htmlFor="lastName">Nazwisko:</InputLabel>
-          <Input
-            type="text"
-            id="lastName"
-            placeholder="nazwisko"
-            value={form.personalData.lastName}
-            onChange={(e) => handleInput(e, "personalData")}
-          />
+          <WrapperForCheck>
+            <Input
+              type="text"
+              id="lastName"
+              placeholder="nazwisko"
+              value={form.personalData.lastName}
+              onChange={(e) => handleInput(e, "personalData")}
+            />
+            {form.personalData.lastName ? (
+              <InputCheckImg src={checkIcon} alt="ikona sprawdzenia" />
+            ) : null}
+          </WrapperForCheck>
         </InputField>
         <InputField>
           <InputLabel htmlFor="pesel">Pesel:</InputLabel>
-          <Input
-            type="text"
-            id="pesel"
-            placeholder="pesel"
-            value={form.personalData.pesel}
-            onChange={(e) => handleInput(e, "personalData")}
-          />
+          <WrapperForCheck>
+            <Input
+              type="text"
+              id="pesel"
+              placeholder="pesel"
+              value={form.personalData.pesel}
+              onChange={(e) => handleInput(e, "personalData")}
+            />
+            {form.personalData.pesel ? (
+              <InputCheckImg src={checkIcon} alt="ikona sprawdzenia" />
+            ) : null}
+          </WrapperForCheck>
         </InputField>
         <InputField>
-          <Dropdown
-            title="Wybierz płeć"
-            items={dropdownTypes}
-            toggleSelected={toggleSelected}
-            dropdownClass="dropdown-gender"
-          />
+          <WrapperForCheck>
+            <Dropdown
+              title="wybierz płeć"
+              items={dropdownTypes}
+              toggleSelected={toggleSelected}
+              dropdownClass="dropdown-gender"
+            />
+            {dropdownTypes &&
+            dropdownTypes.some((item) => item.selected === true) ? (
+              <InputCheckImg
+                src={checkIcon}
+                alt="ikona sprawdzenia"
+                className="dropdown-check"
+              />
+            ) : null}
+          </WrapperForCheck>
         </InputField>
       </SectionWrapper>
     </>

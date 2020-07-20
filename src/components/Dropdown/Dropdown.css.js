@@ -1,16 +1,18 @@
 import styled from "styled-components";
 
 export const DropdownContainer = styled.div`
-  width: 150px;
+  width: 60%;
+  margin: 25px 0;
 `;
 
 export const DropdownHeader = styled.div`
   display: flex;
-  height: 30px;
-  border: solid 1px ${({ theme }) => theme.colors.black.normal};
+  justify-content: space-between;
+  height: 37px;
+  border: solid 1px ${({ theme }) => theme.colors.blue.main};
   border-bottom: none;
   border-radius: 3px 3px 0px 0px;
-  padding: 0 10px;
+  padding: 0 15px;
   cursor: pointer;
   transition: 0.5s;
 
@@ -20,35 +22,39 @@ export const DropdownHeader = styled.div`
 `;
 
 export const DropdownHeaderTitle = styled.span`
-  line-height: 30px;
+  line-height: 37px;
   font-size: 1rem;
-  margin-right: 10px;
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.blue.main};
+  color: ${({ theme }) => theme.colors.grey.placeholderDark};
 `;
 
 export const DropdownHeaderImg = styled.img`
-  height: 24px;
-  margin-top: 3px;
+  height: 29px;
+  margin-top: 4px;
 `;
 
 export const DropdownList = styled.ul`
   overflow: hidden;
-  height: 0;
+  height: 3px;
   padding: 0 10px;
-  border: solid 1px ${({ theme }) => theme.colors.black.normal};
+  border: solid 1px ${({ theme }) => theme.colors.blue.main};
   border-top: none;
   border-radius: 0px 0px 3px 3px;
   background: ${({ theme }) => theme.colors.white.normal};
   transition: 0.5s;
 
   &.dropdown-gender {
-    height: 50px;
+    height: 80px;
   }
 `;
 
 export const DropdownListItem = styled.li`
-  padding: 0 5px;
+  height: 30px;
+  margin: 5px 0;
+  line-height: 30px;
+  padding: 0 10px;
+  font-weight: 600;
+  border-radius: 3px;
   cursor: pointer;
   transition: 0.5s;
 
@@ -59,8 +65,7 @@ export const DropdownListItem = styled.li`
 
   &:hover {
     background: ${({ theme }) => theme.colors.grey.light};
-    border-radius: 3px;
-    padding-left: 15px;
+    padding-left: 20px;
     color: ${({ theme }) => theme.colors.blue.main};
   }
 `;
