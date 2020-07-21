@@ -21,6 +21,7 @@ export default {
       normal: "rgb(211,211,211)",
       dark: "rgb(184,184,184)",
       placeholderDark: "rgb(164,164,164)",
+      fontDark: "rgb(124,124,124)",
     },
     blue: {
       main: "rgb(3,82,136)",

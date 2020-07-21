@@ -86,12 +86,13 @@ const Users = () => {
           <TableHeaderList
             items={[
               { id: 1, title: "Nr" },
-              { id: 2, title: "Nazwisko" },
-              { id: 3, title: "Imię" },
-              { id: 4, title: "Uprawnienia" },
-              { id: 5, title: "Stanowisko" },
-              { id: 6, title: "Departament" },
-              { id: 7, title: "Pesel" },
+              { id: 2, title: "" },
+              { id: 3, title: "Nazwisko" },
+              { id: 4, title: "Imię" },
+              { id: 5, title: "Uprawnienia" },
+              { id: 6, title: "Stanowisko" },
+              { id: 7, title: "Departament" },
+              { id: 8, title: "Pesel" },
             ]}
           />
         </UsersTableHeader>

@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const DropdownContainer = styled.div`
+export const DropdownContainer = styled.div `
   width: 60%;
-  margin: 25px 0;
+  margin: 5px 0;
 `;
 
-export const DropdownHeader = styled.div`
+export const DropdownHeader = styled.div `
   display: flex;
   justify-content: space-between;
   height: 37px;
@@ -21,19 +21,19 @@ export const DropdownHeader = styled.div`
   }
 `;
 
-export const DropdownHeaderTitle = styled.span`
+export const DropdownHeaderTitle = styled.span `
   line-height: 37px;
   font-size: 1rem;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.grey.placeholderDark};
 `;
 
-export const DropdownHeaderImg = styled.img`
+export const DropdownHeaderImg = styled.img `
   height: 29px;
   margin-top: 4px;
 `;
 
-export const DropdownList = styled.ul`
+export const DropdownList = styled.ul `
   overflow: hidden;
   height: 3px;
   padding: 0 10px;
@@ -46,9 +46,13 @@ export const DropdownList = styled.ul`
   &.dropdown-gender {
     height: 80px;
   }
+
+  &.dropdown-job {
+    height: 160px;
+  }
 `;
 
-export const DropdownListItem = styled.li`
+export const DropdownListItem = styled.li `
   height: 30px;
   margin: 5px 0;
   line-height: 30px;

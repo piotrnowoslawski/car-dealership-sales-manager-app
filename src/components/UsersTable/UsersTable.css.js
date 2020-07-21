@@ -21,7 +21,9 @@ export const UsersListItem = styled.li`
   }
 `;
 
-export const StyledLink = styled(NavLink).attrs({ active })`
+export const StyledLink = styled(NavLink).attrs({
+  active,
+})`
   display: flex;
 `;
 
@@ -34,23 +36,29 @@ export const LinkSpan = styled.span`
   &:nth-child(1) {
     width: 50px;
   }
-  &:nth-child(2) {
+  &:nth-child(3) {
     width: 200px;
   }
-  &:nth-child(3) {
-    width: 120px;
-  }
   &:nth-child(4) {
-    width: 140px;
+    width: 120px;
   }
   &:nth-child(5) {
-    width: 120px;
+    width: 140px;
   }
   &:nth-child(6) {
-    width: 140px;
+    width: 120px;
   }
   &:nth-child(7) {
     width: 140px;
+  }
+  &:nth-child(8) {
+    width: 140px;
     border-right: none;
   }
+`;
+
+export const LinkImg = styled.img`
+  height: 30px;
+  width: 30px;
+  border-right: solid 1px ${({ theme }) => theme.colors.grey.light};
 `;

@@ -11,9 +11,18 @@ import {
 import {
   UserViewContainer,
   UserViewHeader,
+  UserViewContent,
+  UserViewHeaderImg,
   UserViewHeaderName,
   UserViewHeaderJobPosition,
 } from "./UserInfo.css";
+import {
+  UserInfoPersonalData,
+  UserInfoJob,
+  UserInfoAddress,
+  UserInfoContact,
+  UserInfoApps,
+} from "components";
 import {
   ButtonsContainer,
   Button,
@@ -24,6 +33,8 @@ import userInfoHeaderIcon from "images/headers/header-user-info-icon.png";
 import closeButtonIcon from "images/buttons/button-close-icon.png";
 import deleteButtonIcon from "images/buttons/button-delete-icon.png";
 import editButtonIcon from "images/buttons/button-edit-user-icon.png";
+import maleIcon from "images/user/user-male-icon2.png";
+import femaleIcon from "images/user/user-female-icon2.png";
 
 const UserInfo = () => {
   const { userId } = useParams();
@@ -51,14 +62,27 @@ const UserInfo = () => {
           alt="ikona widoku użytkownika"
         />
       </DashboardHeader>
-      <UserViewContainer>
-        {Object.keys(user).length !== 0 ? (
+      {Object.keys(user).length !== 0 ? (
+        <UserViewContainer>
           <UserViewHeader>
+            <UserViewHeaderImg
+              src={
+                user.personalData.gender === "mężczyzna" ? maleIcon : femaleIcon
+              }
+              alt="ikona użytkownika"
+            />
             <UserViewHeaderName>{`${user.personalData.lastName} ${user.personalData.firstName}`}</UserViewHeaderName>
             <UserViewHeaderJobPosition>{`${user.job.position}`}</UserViewHeaderJobPosition>
           </UserViewHeader>
-        ) : null}
-      </UserViewContainer>
+          <UserViewContent>
+            <UserInfoPersonalData user={user} />
+            <UserInfoJob user={user} />
+            <UserInfoAddress user={user} />
+            <UserInfoContact user={user} />
+            <UserInfoApps user={user} />
+          </UserViewContent>
+        </UserViewContainer>
+      ) : null}
       <ButtonsContainer>
         <Link to="/dashboard/users">
           <Button black>

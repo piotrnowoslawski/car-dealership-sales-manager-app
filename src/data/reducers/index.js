@@ -4,6 +4,7 @@ import alertReducer from "./alert.reducer";
 import usersReducer from "./users.reducer";
 import userInfoReducer from "./userInfo.reducer";
 import userManagementReducer from "./userManagement.reducer";
+import workplacesReducer from "./workplaces.reducer";
 
 const rootReducer = combineReducers({
   authReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   usersReducer,
   userInfoReducer,
   userManagementReducer,
+  workplacesReducer,
 });
 
 export default rootReducer;

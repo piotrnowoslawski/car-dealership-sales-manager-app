@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Prompt } from "react-router-dom";
 import {
   DashboardHeader,
@@ -7,8 +7,10 @@ import {
 } from "components/DashboardHeader/DashboardHeader";
 import {
   UserFormContainer,
-  SectionWrapper,
-  SectionWrapperHeader,
+  UserFormInputsWrapper,
+  UserFormHeader,
+  UserFormHeaderImg,
+  UserFormHeaderName,
 } from "./UserForm.css";
 import {
   UserFormPersonalData,
@@ -23,6 +25,8 @@ import {
   ButtonImg,
   ButtonText,
 } from "../Buttons/Buttons";
+import maleIcon from "images/user/user-male-icon2.png";
+import femaleIcon from "images/user/user-female-icon2.png";
 import cancelButtonIcon from "images/buttons/button-cancel-icon.png";
 import saveButtonIcon from "images/buttons/button-save-icon.png";
 
@@ -35,7 +39,6 @@ const UserForm = ({
   headerIconTitle,
   submitText,
 }) => {
-  const [dropdownTypes, setDropdownTypes] = useState();
   const [form, setForm] = useState({
     _id: "",
     personalData: {
@@ -74,29 +77,18 @@ const UserForm = ({
     role: "",
   });
 
+  useEffect(() => {
+    if (user && Object.keys(user).length !== 0) {
+      setForm(user);
+    }
+  }, [user]);
+
   const handleInput = (e, category) => {
     setForm({
       ...form,
       [category]: {
         ...form[category],
         [e.target.id]: e.target.value,
-      },
-    });
-  };
-
-  const handleDropdown = (e, id, selected, category, key, value) => {
-    setDropdownTypes(
-      dropdownTypes.map((item) =>
-        item.id === id
-          ? { ...item, selected: !selected }
-          : { ...item, selected: false }
-      )
-    );
-    setForm({
-      ...form,
-      [category]: {
-        ...form[category],
-        [key]: value,
       },
     });
   };
@@ -115,21 +107,42 @@ const UserForm = ({
           alt={headerIconTitle}
         />
       </DashboardHeader>
+      <UserFormHeader>
+        {form.personalData.gender ? (
+          <UserFormHeaderImg
+            src={
+              form.personalData.gender === "mężczyzna" ? maleIcon : femaleIcon
+            }
+            alt="ikona użytkownika"
+          />
+        ) : null}
+        <UserFormHeaderName>{`${
+          form.personalData.lastName ? form.personalData.lastName : "Wprowadź"
+        } ${
+          form.personalData.firstName
+            ? form.personalData.firstName
+            : "dane poniżej"
+        }`}</UserFormHeaderName>
+      </UserFormHeader>
       <UserFormContainer onSubmit={(e) => handleSubmit(e)}>
         <Prompt message="Czy chcesz wykonać operację?" />
-        <UserFormPersonalData
-          user={user}
-          form={form}
-          setForm={setForm}
-          dropdownTypes={dropdownTypes}
-          setDropdownTypes={setDropdownTypes}
-          handleInput={handleInput}
-          toggleSelected={handleDropdown}
-        />
-        <UserFormJob />
-        <UserFormAddress />
-        <UserFormContact />
-        <UserFormApps />
+        <UserFormInputsWrapper>
+          <UserFormPersonalData
+            user={user}
+            form={form}
+            setForm={setForm}
+            handleInput={handleInput}
+          />
+          <UserFormJob
+            user={user}
+            form={form}
+            setForm={setForm}
+            handleInput={handleInput}
+          />
+          <UserFormAddress />
+          <UserFormContact />
+          <UserFormApps />
+        </UserFormInputsWrapper>
         <ButtonsContainer>
           <Button black onClick={(e) => handleCancel(e)}>
             <ButtonImg src={cancelButtonIcon} alt="przycisk anuluj" />

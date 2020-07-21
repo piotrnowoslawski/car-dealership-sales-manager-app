@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   DropdownContainer,
   DropdownHeader,
@@ -10,16 +10,63 @@ import {
 import dropdownDownIcon from "images/dropdown/dropdown-down-icon.png";
 import dropdownUpIcon from "images/dropdown/dropdown-up-icon.png";
 
-const Dropdown = ({ title, items, toggleSelected, dropdownClass }) => {
+const Dropdown = ({
+  title,
+  user,
+  items,
+  setItems,
+  form,
+  setForm,
+  typesCategory,
+  typesCategoryKey,
+  dropdownClass,
+}) => {
   const [listOpen, setListOpen] = useState(false);
-
+  const [index, setIndex] = useState(-1);
   const toggleList = () => setListOpen(!listOpen);
+
+  useEffect(() => {
+    if (items) {
+      setIndex(items.findIndex((item) => item.selected === true));
+    }
+  }, [items]);
+
+  useEffect(() => {
+    if (user && Object.keys(user).length !== 0) {
+      setItems(
+        items.map((item) =>
+          item.value === user[typesCategory][typesCategoryKey]
+            ? { ...item, selected: true }
+            : { ...item, selected: false }
+        )
+      );
+    }
+  }, [user]);
+
+  const toggleSelected = (e, id, selected, category, key, value) => {
+    setItems(
+      items.map((item) =>
+        item.id === id
+          ? { ...item, selected: !selected }
+          : { ...item, selected: false }
+      )
+    );
+    setForm({
+      ...form,
+      [category]: {
+        ...form[category],
+        [key]: value,
+      },
+    });
+  };
 
   return (
     <>
       <DropdownContainer>
         <DropdownHeader onClick={(e) => toggleList()}>
-          <DropdownHeaderTitle>{title}</DropdownHeaderTitle>
+          <DropdownHeaderTitle>
+            {index >= 0 ? items[index].title : title}
+          </DropdownHeaderTitle>
           <DropdownHeaderImg
             src={listOpen ? dropdownUpIcon : dropdownDownIcon}
             alt="ikona rozwijanej listy"

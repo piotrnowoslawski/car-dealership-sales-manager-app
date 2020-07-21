@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Dropdown } from "components";
 import {
   SectionWrapper,
@@ -11,16 +11,8 @@ import {
 } from "../UserForm/UserForm.css";
 import checkIcon from "images/form/form-check-icon.png";
 
-const UserFormPersonalData = ({
-  user,
-  form,
-  setForm,
-  dropdownTypes,
-  setDropdownTypes,
-  handleInput,
-  toggleSelected,
-}) => {
-  const genderTypes = [
+const UserFormPersonalData = ({ user, form, setForm, handleInput }) => {
+  const [genderTypes, setGenderTypes] = useState([
     {
       id: 1,
       title: "kobieta",
@@ -37,24 +29,7 @@ const UserFormPersonalData = ({
       category: "personalData",
       key: "gender",
     },
-  ];
-
-  useEffect(() => {
-    setDropdownTypes(genderTypes);
-  }, []);
-
-  useEffect(() => {
-    if (user && Object.keys(user).length !== 0) {
-      setForm(user);
-      setDropdownTypes(
-        genderTypes.map((item) =>
-          item.value === user.personalData.gender
-            ? { ...item, selected: true }
-            : { ...item, selected: false }
-        )
-      );
-    }
-  }, [user]);
+  ]);
 
   return (
     <>
@@ -121,15 +96,20 @@ const UserFormPersonalData = ({
           </WrapperForCheck>
         </InputField>
         <InputField>
+          <InputLabel>Płeć:</InputLabel>
           <WrapperForCheck>
             <Dropdown
               title="wybierz płeć"
-              items={dropdownTypes}
-              toggleSelected={toggleSelected}
+              user={user}
+              items={genderTypes}
+              setItems={setGenderTypes}
+              form={form}
+              setForm={setForm}
+              typesCategory="personalData"
+              typesCategoryKey="gender"
               dropdownClass="dropdown-gender"
             />
-            {dropdownTypes &&
-            dropdownTypes.some((item) => item.selected === true) ? (
+            {genderTypes.some((item) => item.selected === true) ? (
               <InputCheckImg
                 src={checkIcon}
                 alt="ikona sprawdzenia"

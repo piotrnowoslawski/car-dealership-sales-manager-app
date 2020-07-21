@@ -14,21 +14,24 @@ export const TableListItem = styled.li`
     width: 50px;
   }
   &:nth-child(2) {
-    width: 200px;
+    width: 30px;
   }
   &:nth-child(3) {
-    width: 120px;
+    width: 200px;
   }
   &:nth-child(4) {
-    width: 140px;
-  }
-  &:nth-child(5) {
     width: 120px;
   }
-  &:nth-child(6) {
+  &:nth-child(5) {
     width: 140px;
   }
+  &:nth-child(6) {
+    width: 120px;
+  }
   &:nth-child(7) {
+    width: 140px;
+  }
+  &:nth-child(8) {
     width: 140px;
   }
 `;

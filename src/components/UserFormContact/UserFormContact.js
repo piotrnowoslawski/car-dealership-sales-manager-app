@@ -8,12 +8,13 @@ import {
   InputCheckImg,
   WrapperForCheck,
 } from "../UserForm/UserForm.css";
+import checkIcon from "images/form/form-check-icon.png";
 
 const UserFormContact = () => {
   return (
     <>
       <SectionWrapper>
-        <SectionWrapperHeader>Kontakt:</SectionWrapperHeader>
+        <SectionWrapperHeader>Dane kontaktowe:</SectionWrapperHeader>
       </SectionWrapper>
     </>
   );

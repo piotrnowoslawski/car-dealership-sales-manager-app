@@ -1,11 +1,43 @@
 import styled from "styled-components";
 
-export const UserFormContainer = styled.form`
-  margin-top: 10px;
-  width: 50%;
+export const UserFormHeader = styled.h2`
+  display: flex;
+  height: 40px;
+  width: 100%;
+  background: ${({ theme }) => theme.colors.blue.main};
+  border-radius: 5px 5px 0px 0px;
+  color: ${({ theme }) => theme.colors.white.normal};
+  line-height: 40px;
+  padding-left: 20px;
+  margin: 20px 0;
 `;
 
-export const SectionWrapper = styled.div``;
+export const UserFormHeaderImg = styled.img`
+  height: 36px;
+  margin-right: 5px;
+  margin-top: 2px;
+`;
+
+export const UserFormHeaderName = styled.span`
+  font-size: 1.4rem;
+`;
+
+export const UserFormContainer = styled.form`
+  width: 100%;
+  margin-top: 10px;
+`;
+
+export const UserFormInputsWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
+export const SectionWrapper = styled.div`
+  width: 49%;
+  margin-bottom: 10px;
+`;
 
 export const SectionWrapperHeader = styled.h3`
   height: 40px;
@@ -20,6 +52,7 @@ export const SectionWrapperHeader = styled.h3`
 `;
 
 export const InputField = styled.div`
+  width: 100%;
   padding: 0 25px;
   margin: 10px 0;
 `;
@@ -49,10 +82,6 @@ export const InputCheckImg = styled.img`
   margin-left: 10px;
   margin-top: 10px;
   height: 30px;
-
-  &.dropdown-check {
-    margin-top: 30px;
-  }
 `;
 
 export const WrapperForCheck = styled.div`
