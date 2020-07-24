@@ -51,9 +51,15 @@ const Users = () => {
   const handleSearch = (e) => {
     let searched = [...users].filter(
       (item) =>
-        item.firstName.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        item.lastName.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        item.peselNumber.toLowerCase().includes(e.target.value.toLowerCase())
+        item.personalData.firstName
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase()) ||
+        item.personalData.lastName
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase()) ||
+        item.personalData.pesel
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase())
     );
     setUsersToDisplay(searched);
 

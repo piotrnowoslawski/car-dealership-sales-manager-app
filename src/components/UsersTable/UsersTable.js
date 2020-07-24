@@ -40,18 +40,22 @@ const UsersTable = ({ users }) => {
                 <StyledLink to={`/dashboard/users/${item._id}`}>
                   <LinkSpan>{index + 1}</LinkSpan>
                   <LinkImg
-                    src={
-                      item.personalData.gender === "mężczyzna"
-                        ? maleIcon
-                        : femaleIcon
-                    }
+                    src={item.personalData.gender === 1 ? femaleIcon : maleIcon}
                     ale="ikona użytkownika"
                   />
                   <LinkSpan>{item.personalData.lastName}</LinkSpan>
                   <LinkSpan>{item.personalData.firstName}</LinkSpan>
                   <LinkSpan>{}</LinkSpan>
-                  <LinkSpan>{jobs[item.job.position - 1].title}</LinkSpan>
-                  <LinkSpan>{workplaces && setWorkplace(item)}</LinkSpan>
+                  <LinkSpan>
+                    {item.job.position
+                      ? jobs[item.job.position - 1].title
+                      : "nie dotyczy"}
+                  </LinkSpan>
+                  <LinkSpan>
+                    {item.job.workplace && workplaces.length !== 0
+                      ? setWorkplace(item)
+                      : "nie dotyczy"}
+                  </LinkSpan>
                   <LinkSpan>{item.personalData.pesel}</LinkSpan>
                 </StyledLink>
               </UsersListItem>

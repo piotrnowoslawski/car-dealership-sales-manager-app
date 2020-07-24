@@ -19,7 +19,7 @@ const UserInfoJob = ({ user }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getWorkplace(user.job.workplace));
+    user.job.workplace && dispatch(getWorkplace(user.job.workplace));
   }, [user]);
 
   return (
@@ -30,15 +30,31 @@ const UserInfoJob = ({ user }) => {
           <DataContainer>
             <DataSection>
               <DataName>Stanowisko:</DataName>
-              <DataContent>{jobs[user.job.position - 1].title}</DataContent>
+              <DataContent>
+                {user.job.position
+                  ? jobs[user.job.position - 1].title
+                  : "nie dotyczy"}
+              </DataContent>
             </DataSection>
             <DataSection>
               <DataName>Miejsce pracy:</DataName>
               <DataContent>
-                {Object.keys(workplace).length !== 0
+                {user.job.workplace && Object.keys(workplace).length !== 0
                   ? workplace.workplaceData.name
-                  : ""}
+                  : "nie dotyczy"}
               </DataContent>
+            </DataSection>
+            <DataSection>
+              <DataName>Data zatrudnienia:</DataName>
+              <DataContent>{user.job.dateOfEmployment}</DataContent>
+            </DataSection>
+            <DataSection>
+              <DataName>Data zakończenia pracy:</DataName>
+              <DataContent>{user.job.dateOfTermination}</DataContent>
+            </DataSection>
+            <DataSection>
+              <DataName>Przełożony:</DataName>
+              <DataContent>{user.job.supervisor}</DataContent>
             </DataSection>
           </DataContainer>
         </Section>

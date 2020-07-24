@@ -64,7 +64,10 @@ const Dropdown = ({
   return (
     <>
       <DropdownContainer>
-        <DropdownHeader onClick={(e) => toggleList()}>
+        <DropdownHeader
+          className={`${listOpen ? "dropdown-open" : null}`}
+          onClick={(e) => toggleList()}
+        >
           <DropdownHeaderTitle>
             {index >= 0 ? items[index].title : title}
           </DropdownHeaderTitle>

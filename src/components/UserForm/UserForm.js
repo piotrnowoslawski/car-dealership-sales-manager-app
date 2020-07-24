@@ -70,9 +70,9 @@ const UserForm = ({
       privatePhone: "",
       businessPhone: "",
       landlinePhone: "",
-    },
-    apps: {
-      skype: "",
+      apps: {
+        skype: "",
+      },
     },
     role: "",
   });
@@ -139,7 +139,7 @@ const UserForm = ({
           />
           <UserFormAddress />
           <UserFormContact />
-          <UserFormApps />
+          {/* <UserFormApps /> */}
         </UserFormInputsWrapper>
         <ButtonsContainer>
           <Button black onClick={(e) => handleCancel(e)}>

@@ -72,7 +72,9 @@ const UserInfo = () => {
             />
             <UserViewHeaderName>{`${user.personalData.lastName} ${user.personalData.firstName}`}</UserViewHeaderName>
             <UserViewHeaderJobPosition>{`${
-              jobs[user.job.position - 1].title
+              user.job.position
+                ? jobs[user.job.position - 1].title
+                : "nie dotyczy"
             }`}</UserViewHeaderJobPosition>
           </UserViewHeader>
           <UserViewContent>
@@ -80,7 +82,7 @@ const UserInfo = () => {
             <UserInfoJob user={user} />
             <UserInfoAddress user={user} />
             <UserInfoContact user={user} />
-            <UserInfoApps user={user} />
+            {/* <UserInfoApps user={user} /> */}
           </UserViewContent>
         </UserViewContainer>
       ) : null}

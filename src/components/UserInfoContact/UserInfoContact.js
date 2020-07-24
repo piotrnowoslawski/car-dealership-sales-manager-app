@@ -17,24 +17,20 @@ const UserInfoContact = ({ user }) => {
           <SectionHeader>Dane kontaktowe:</SectionHeader>
           <DataContainer>
             <DataSection>
-              <DataName>Nazwisko:</DataName>
-              <DataContent>{user.personalData.lastName}</DataContent>
+              <DataName>Email:</DataName>
+              <DataContent>{user.contacts.email}</DataContent>
             </DataSection>
             <DataSection>
-              <DataName>Imię:</DataName>
-              <DataContent>{user.personalData.firstName}</DataContent>
+              <DataName>Telefon służbowy:</DataName>
+              <DataContent>{user.contacts.businessPhone}</DataContent>
             </DataSection>
             <DataSection>
-              <DataName>Drugie imię:</DataName>
-              <DataContent>
-                {user.personalData.secondName
-                  ? user.personalData.secondName
-                  : "nie dotyczy"}
-              </DataContent>
+              <DataName>Telefon prywatny:</DataName>
+              <DataContent>{user.contacts.privatePhone}</DataContent>
             </DataSection>
             <DataSection>
-              <DataName>Pesel:</DataName>
-              <DataContent>{user.personalData.pesel}</DataContent>
+              <DataName>Skype:</DataName>
+              <DataContent>{user.contacts.apps.skype}</DataContent>
             </DataSection>
           </DataContainer>
         </Section>

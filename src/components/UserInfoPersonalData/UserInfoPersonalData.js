@@ -36,6 +36,10 @@ const UserInfoPersonalData = ({ user }) => {
               <DataName>Pesel:</DataName>
               <DataContent>{user.personalData.pesel}</DataContent>
             </DataSection>
+            <DataSection>
+              <DataName>Data urodzenia:</DataName>
+              <DataContent>{user.personalData.dateOfBirth}</DataContent>
+            </DataSection>
           </DataContainer>
         </Section>
       </SectionWrapper>

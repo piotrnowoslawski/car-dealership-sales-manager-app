@@ -17,24 +17,8 @@ const UserInfoApps = ({ user }) => {
           <SectionHeader>Aplikacje:</SectionHeader>
           <DataContainer>
             <DataSection>
-              <DataName>Nazwisko:</DataName>
-              <DataContent>{user.personalData.lastName}</DataContent>
-            </DataSection>
-            <DataSection>
-              <DataName>Imię:</DataName>
-              <DataContent>{user.personalData.firstName}</DataContent>
-            </DataSection>
-            <DataSection>
-              <DataName>Drugie imię:</DataName>
-              <DataContent>
-                {user.personalData.secondName
-                  ? user.personalData.secondName
-                  : "nie dotyczy"}
-              </DataContent>
-            </DataSection>
-            <DataSection>
-              <DataName>Pesel:</DataName>
-              <DataContent>{user.personalData.pesel}</DataContent>
+              <DataName></DataName>
+              <DataContent></DataContent>
             </DataSection>
           </DataContainer>
         </Section>

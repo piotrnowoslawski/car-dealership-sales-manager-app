@@ -17,24 +17,28 @@ const UserInfoAddress = ({ user }) => {
           <SectionHeader>Dane adresowe:</SectionHeader>
           <DataContainer>
             <DataSection>
-              <DataName>Nazwisko:</DataName>
-              <DataContent>{user.personalData.lastName}</DataContent>
+              <DataName>Ulica:</DataName>
+              <DataContent>{user.address.street}</DataContent>
             </DataSection>
             <DataSection>
-              <DataName>Imię:</DataName>
-              <DataContent>{user.personalData.firstName}</DataContent>
+              <DataName>Numer domu:</DataName>
+              <DataContent>{user.address.propertyNumber}</DataContent>
             </DataSection>
             <DataSection>
-              <DataName>Drugie imię:</DataName>
-              <DataContent>
-                {user.personalData.secondName
-                  ? user.personalData.secondName
-                  : "nie dotyczy"}
-              </DataContent>
+              <DataName>Numer lokalu:</DataName>
+              <DataContent>{user.address.apartmentNumber}</DataContent>
             </DataSection>
             <DataSection>
-              <DataName>Pesel:</DataName>
-              <DataContent>{user.personalData.pesel}</DataContent>
+              <DataName>Miasto:</DataName>
+              <DataContent>{user.address.city}</DataContent>
+            </DataSection>
+            <DataSection>
+              <DataName>Kod pocztowy:</DataName>
+              <DataContent>{user.address.zipCode}</DataContent>
+            </DataSection>
+            <DataSection>
+              <DataName>Kraj:</DataName>
+              <DataContent>{user.address.country}</DataContent>
             </DataSection>
           </DataContainer>
         </Section>
