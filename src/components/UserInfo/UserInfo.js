@@ -40,6 +40,7 @@ const UserInfo = () => {
   const { userId } = useParams();
   const history = useHistory();
   const user = useSelector((state) => state.userInfoReducer.user);
+  const jobs = useSelector((state) => state.jobsReducer.jobs);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -66,13 +67,13 @@ const UserInfo = () => {
         <UserViewContainer>
           <UserViewHeader>
             <UserViewHeaderImg
-              src={
-                user.personalData.gender === "mężczyzna" ? maleIcon : femaleIcon
-              }
+              src={user.personalData.gender === 1 ? femaleIcon : maleIcon}
               alt="ikona użytkownika"
             />
             <UserViewHeaderName>{`${user.personalData.lastName} ${user.personalData.firstName}`}</UserViewHeaderName>
-            <UserViewHeaderJobPosition>{`${user.job.position}`}</UserViewHeaderJobPosition>
+            <UserViewHeaderJobPosition>{`${
+              jobs[user.job.position - 1].title
+            }`}</UserViewHeaderJobPosition>
           </UserViewHeader>
           <UserViewContent>
             <UserInfoPersonalData user={user} />

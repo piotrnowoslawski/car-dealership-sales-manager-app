@@ -14,7 +14,7 @@ export const UserViewHeader = styled.h2 `
   border-radius: 5px 5px 0px 0px;
   color: ${({ theme }) => theme.colors.white.normal};
   line-height: 40px;
-  padding-left: 20px;
+  padding: 0 20px;
 `;
 
 export const UserViewHeaderImg = styled.img `
@@ -29,6 +29,7 @@ export const UserViewHeaderName = styled.span `
 
 export const UserViewHeaderJobPosition = styled.span `
   font-size: 1.4rem;
+  margin: 0 0 0 auto;
 `;
 
 export const UserViewContent = styled.div `

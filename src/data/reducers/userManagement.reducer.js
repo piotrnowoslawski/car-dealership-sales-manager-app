@@ -5,7 +5,7 @@ const initialUser = {
   error: null,
 };
 
-const userManagementReducer = (state = {}, action) => {
+const userManagementReducer = (state = initialUser, action) => {
   switch (action.type) {
     case ADD_USER:
       return {

@@ -14,42 +14,10 @@ import {
 import checkIcon from "images/form/form-check-icon.png";
 
 const UserFormJob = ({ user, form, setForm, handleInput }) => {
+  const jobs = useSelector((state) => state.jobsReducer.jobs);
   const workplaces = useSelector((state) => state.workplacesReducer.workplaces);
   const dispatch = useDispatch();
-  const [jobTypes, setJobTypes] = useState([
-    {
-      id: 1,
-      title: "handlowiec",
-      value: "handlowiec",
-      selected: false,
-      category: "job",
-      key: "position",
-    },
-    {
-      id: 2,
-      title: "kierownik",
-      value: "kierownik",
-      selected: false,
-      category: "job",
-      key: "position",
-    },
-    {
-      id: 3,
-      title: "dyrektor",
-      value: "dyrektor",
-      selected: false,
-      category: "job",
-      key: "position",
-    },
-    {
-      id: 4,
-      title: "prezes",
-      value: "prezes",
-      selected: false,
-      category: "job",
-      key: "position",
-    },
-  ]);
+  const [jobTypes, setJobTypes] = useState(jobs);
   const [workplaceTypes, setWorkplaceTypes] = useState([]);
 
   useEffect(() => {
@@ -59,7 +27,7 @@ const UserFormJob = ({ user, form, setForm, handleInput }) => {
   useEffect(() => {
     setWorkplaceTypes(
       workplaces.map((item, index) => ({
-        id: index + 1,
+        id: item._id,
         title: item.workplaceData.name,
         value: item.workplaceData.name,
         selected: false,

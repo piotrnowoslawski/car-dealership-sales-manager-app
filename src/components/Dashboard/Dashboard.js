@@ -12,6 +12,7 @@ import {
   Team,
   Sale,
   Reports,
+  Workplaces,
 } from "components";
 
 const DashBoard = () => {
@@ -57,6 +58,13 @@ const DashBoard = () => {
             iconName: "raporty",
             iconPath: "reports",
           },
+          {
+            id: "6",
+            title: "Salony",
+            link: "/dashboard/workplaces",
+            iconName: "miejsca pracy",
+            iconPath: "workplace",
+          },
         ]}
       />
       <Wrapper>
@@ -70,6 +78,7 @@ const DashBoard = () => {
           <Route path="/dashboard/team" component={Team} />
           <Route path="/dashboard/sale" component={Sale} />
           <Route path="/dashboard/reports" component={Reports} />
+          <Route path="/dashboard/workplaces" component={Workplaces} />
         </Switch>
       </Wrapper>
     </Container>

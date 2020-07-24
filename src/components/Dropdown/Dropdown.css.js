@@ -34,7 +34,7 @@ export const DropdownHeaderImg = styled.img `
 `;
 
 export const DropdownList = styled.ul `
-  overflow: hidden;
+  overflow: auto;
   height: 3px;
   padding: 0 10px;
   border: solid 1px ${({ theme }) => theme.colors.blue.main};

@@ -1,12 +1,14 @@
 import React from "react";
 import { TableList, TableListItem } from "./TableHeaderList.css";
 
-const TableHeaderList = ({ items }) => {
+const TableHeaderList = ({ items, styleClass }) => {
   return (
     <>
-      <TableList>
+      <TableList className={styleClass}>
         {items.map((item) => (
-          <TableListItem key={item.id}>{item.title}</TableListItem>
+          <TableListItem style key={item.id}>
+            {item.title}
+          </TableListItem>
         ))}
       </TableList>
     </>

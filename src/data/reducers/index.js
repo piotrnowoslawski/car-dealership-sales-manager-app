@@ -5,6 +5,10 @@ import usersReducer from "./users.reducer";
 import userInfoReducer from "./userInfo.reducer";
 import userManagementReducer from "./userManagement.reducer";
 import workplacesReducer from "./workplaces.reducer";
+import workplaceInfoReducer from "./workplaceInfo.reducer";
+import workplaceManagementReducer from "./workplaceManagement.reducer";
+import genderReducer from "./gender.reducer";
+import jobsReducer from "./jobs.reducer";
 
 const rootReducer = combineReducers({
   authReducer,
@@ -13,6 +17,10 @@ const rootReducer = combineReducers({
   userInfoReducer,
   userManagementReducer,
   workplacesReducer,
+  workplaceInfoReducer,
+  workplaceManagementReducer,
+  genderReducer,
+  jobsReducer,
 });
 
 export default rootReducer;

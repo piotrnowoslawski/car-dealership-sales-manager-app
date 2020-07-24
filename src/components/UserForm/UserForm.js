@@ -110,9 +110,7 @@ const UserForm = ({
       <UserFormHeader>
         {form.personalData.gender ? (
           <UserFormHeaderImg
-            src={
-              form.personalData.gender === "mężczyzna" ? maleIcon : femaleIcon
-            }
+            src={form.personalData.gender === 1 ? femaleIcon : maleIcon}
             alt="ikona użytkownika"
           />
         ) : null}

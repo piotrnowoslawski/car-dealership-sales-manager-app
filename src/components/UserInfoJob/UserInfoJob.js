@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getWorkplace } from "data/fetch/workplaceInfo.fetch";
 import {
   SectionWrapper,
   Section,
@@ -10,6 +12,16 @@ import {
 } from "../UserInfo/UserInfo.css";
 
 const UserInfoJob = ({ user }) => {
+  const workplace = useSelector(
+    (state) => state.workplaceInfoReducer.workplace
+  );
+  const jobs = useSelector((state) => state.jobsReducer.jobs);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getWorkplace(user.job.workplace));
+  }, [user]);
+
   return (
     <>
       <SectionWrapper>
@@ -17,24 +29,16 @@ const UserInfoJob = ({ user }) => {
           <SectionHeader>Dane zatrudnienia:</SectionHeader>
           <DataContainer>
             <DataSection>
-              <DataName>Nazwisko:</DataName>
-              <DataContent>{user.personalData.lastName}</DataContent>
+              <DataName>Stanowisko:</DataName>
+              <DataContent>{jobs[user.job.position - 1].title}</DataContent>
             </DataSection>
             <DataSection>
-              <DataName>Imię:</DataName>
-              <DataContent>{user.personalData.firstName}</DataContent>
-            </DataSection>
-            <DataSection>
-              <DataName>Drugie imię:</DataName>
+              <DataName>Miejsce pracy:</DataName>
               <DataContent>
-                {user.personalData.secondName
-                  ? user.personalData.secondName
-                  : "nie dotyczy"}
+                {Object.keys(workplace).length !== 0
+                  ? workplace.workplaceData.name
+                  : ""}
               </DataContent>
-            </DataSection>
-            <DataSection>
-              <DataName>Pesel:</DataName>
-              <DataContent>{user.personalData.pesel}</DataContent>
             </DataSection>
           </DataContainer>
         </Section>

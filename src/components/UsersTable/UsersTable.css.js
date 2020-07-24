@@ -11,9 +11,9 @@ export const UsersList = styled.ul`
 `;
 
 export const UsersListItem = styled.li`
+  transition: 0.5s;
   &:nth-child(odd) {
     background: ${({ theme }) => theme.colors.white.smoke};
-    transition: 0.5s;
   }
 
   &:hover {
@@ -40,7 +40,7 @@ export const LinkSpan = styled.span`
     width: 200px;
   }
   &:nth-child(4) {
-    width: 120px;
+    width: 100px;
   }
   &:nth-child(5) {
     width: 140px;
@@ -49,10 +49,10 @@ export const LinkSpan = styled.span`
     width: 120px;
   }
   &:nth-child(7) {
-    width: 140px;
+    width: 180px;
   }
   &:nth-child(8) {
-    width: 140px;
+    width: 120px;
     border-right: none;
   }
 `;

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Dropdown } from "components";
 import {
   SectionWrapper,
@@ -12,24 +13,8 @@ import {
 import checkIcon from "images/form/form-check-icon.png";
 
 const UserFormPersonalData = ({ user, form, setForm, handleInput }) => {
-  const [genderTypes, setGenderTypes] = useState([
-    {
-      id: 1,
-      title: "kobieta",
-      value: "kobieta",
-      selected: false,
-      category: "personalData",
-      key: "gender",
-    },
-    {
-      id: 2,
-      title: "mężczyzna",
-      value: "mężczyzna",
-      selected: false,
-      category: "personalData",
-      key: "gender",
-    },
-  ]);
+  const gender = useSelector((state) => state.genderReducer.gender);
+  const [genderTypes, setGenderTypes] = useState(gender);
 
   return (
     <>

@@ -91,9 +91,10 @@ const Users = () => {
               { id: 4, title: "Imię" },
               { id: 5, title: "Uprawnienia" },
               { id: 6, title: "Stanowisko" },
-              { id: 7, title: "Departament" },
+              { id: 7, title: "Miejsce pracy" },
               { id: 8, title: "Pesel" },
             ]}
+            styleClass={"users-table-style"}
           />
         </UsersTableHeader>
         {pending ? (
@@ -103,6 +104,7 @@ const Users = () => {
         )}
         <UsersTableFooter>
           <Pagination
+            items={users}
             itemsPerPage={usersPerPage}
             totalItems={usersToDisplay.length}
             currentPage={currentPage}

@@ -35,6 +35,7 @@ const Dropdown = ({
     if (user && Object.keys(user).length !== 0) {
       setItems(
         items.map((item) =>
+          item.id === user[typesCategory][typesCategoryKey] ||
           item.value === user[typesCategory][typesCategoryKey]
             ? { ...item, selected: true }
             : { ...item, selected: false }
@@ -55,7 +56,7 @@ const Dropdown = ({
       ...form,
       [category]: {
         ...form[category],
-        [key]: value,
+        [key]: id,
       },
     });
   };
