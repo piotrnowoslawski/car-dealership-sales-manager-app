@@ -67,27 +67,29 @@ const UserFormJob = ({ user, form, setForm, handleInput }) => {
         </InputField>
         <InputField>
           <InputLabel>Miejsce pracy:</InputLabel>
-          <WrapperForCheck>
-            <Dropdown
-              title="wybierz oddział"
-              user={user}
-              items={workplaceTypes}
-              setItems={setWorkplaceTypes}
-              form={form}
-              setForm={setForm}
-              typesCategory="job"
-              typesCategoryKey="workplace"
-              dropdownClass="dropdown-job"
-              searchActive={false}
-            />
-            {workplaceTypes.some((item) => item.selected === true) ? (
-              <InputCheckImg
-                src={checkIcon}
-                alt="ikona sprawdzenia"
-                className="dropdown-check"
+          {workplaceTypes.length !== 0 ? (
+            <WrapperForCheck>
+              <Dropdown
+                title="wybierz oddział"
+                user={user}
+                items={workplaceTypes}
+                setItems={setWorkplaceTypes}
+                form={form}
+                setForm={setForm}
+                typesCategory="job"
+                typesCategoryKey="workplace"
+                dropdownClass="dropdown-job"
+                searchActive={false}
               />
-            ) : null}
-          </WrapperForCheck>
+              {workplaceTypes.some((item) => item.selected === true) ? (
+                <InputCheckImg
+                  src={checkIcon}
+                  alt="ikona sprawdzenia"
+                  className="dropdown-check"
+                />
+              ) : null}
+            </WrapperForCheck>
+          ) : null}
         </InputField>
       </SectionWrapper>
     </>

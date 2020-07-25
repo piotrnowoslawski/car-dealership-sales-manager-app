@@ -28,37 +28,33 @@ const Dropdown = ({
   searchActive,
 }) => {
   const [listOpen, setListOpen] = useState(false);
-  const [index, setIndex] = useState(-1);
+  const [index, setIndex] = useState();
   const [searchValue, setSearchValue] = useState("");
   const [itemsToDispaly, setItemsToDispaly] = useState(items);
   const toggleList = () => setListOpen(!listOpen);
 
   useEffect(() => {
-    if (items) {
-      setItemsToDispaly(items);
-      setIndex(items.findIndex((item) => item.selected === true));
-    }
-  }, [items]);
+    setIndex(items.findIndex((item) => item.selected === true));
+  }, [itemsToDispaly]);
 
   useEffect(() => {
     if (user && Object.keys(user).length !== 0) {
-      const selected = items.map((item) =>
+      let selecting = items.map((item) =>
         item.id === user[typesCategory][typesCategoryKey] ||
         item.value === user[typesCategory][typesCategoryKey]
           ? { ...item, selected: true }
           : { ...item, selected: false }
       );
-      setItems(selected);
+      setItems(selecting);
+      setItemsToDispaly(selecting);
     }
   }, [user]);
 
-  const toggleSelected = (e, id, selected, category, key, value) => {
-    setItems(
-      items.map((item) =>
-        item.id === id
-          ? { ...item, selected: !selected }
-          : { ...item, selected: false }
-      )
+  const toggleSelected = (e, id, selected, category, key) => {
+    let newSelecting = items.map((item) =>
+      item.id === id
+        ? { ...item, selected: !selected }
+        : { ...item, selected: false }
     );
     setForm({
       ...form,
@@ -67,6 +63,8 @@ const Dropdown = ({
         [key]: id,
       },
     });
+    setItems(newSelecting);
+    setItemsToDispaly(newSelecting);
   };
 
   const handleSearch = (e) => {
@@ -123,8 +121,7 @@ const Dropdown = ({
                       item.id,
                       item.selected,
                       item.category,
-                      item.key,
-                      item.value
+                      item.key
                     );
                     toggleList();
                   }}

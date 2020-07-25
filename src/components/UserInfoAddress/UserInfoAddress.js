@@ -28,7 +28,11 @@ const UserInfoAddress = ({ user }) => {
             </DataSection>
             <DataSection>
               <DataName>Numer lokalu:</DataName>
-              <DataContent>{user.address.apartmentNumber}</DataContent>
+              <DataContent>
+                {user.address.apartmentNumber
+                  ? user.address.apartmentNumber
+                  : "nie dotyczy"}
+              </DataContent>
             </DataSection>
             <DataSection>
               <DataName>Miasto:</DataName>
@@ -41,7 +45,8 @@ const UserInfoAddress = ({ user }) => {
             <DataSection>
               <DataName>Kraj:</DataName>
               <DataContent>
-                {countries && countries[user.address.country - 1].text}
+                {user.address.country &&
+                  countries[user.address.country - 1].text}
               </DataContent>
             </DataSection>
           </DataContainer>
