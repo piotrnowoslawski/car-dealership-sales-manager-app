@@ -9,6 +9,7 @@ import workplaceInfoReducer from "./workplaceInfo.reducer";
 import workplaceManagementReducer from "./workplaceManagement.reducer";
 import genderReducer from "./gender.reducer";
 import jobsReducer from "./jobs.reducer";
+import countriesReducer from "./countries.reducer";
 
 const rootReducer = combineReducers({
   authReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   workplaceManagementReducer,
   genderReducer,
   jobsReducer,
+  countriesReducer,
 });
 
 export default rootReducer;

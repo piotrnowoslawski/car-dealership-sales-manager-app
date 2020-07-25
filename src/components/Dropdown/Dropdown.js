@@ -4,11 +4,16 @@ import {
   DropdownHeader,
   DropdownHeaderTitle,
   DropdownHeaderImg,
+  DropdownSerach,
+  DropdownSerachImg,
+  DropdownSerachInput,
+  DropdownListContainer,
   DropdownList,
   DropdownListItem,
 } from "./Dropdown.css";
 import dropdownDownIcon from "images/dropdown/dropdown-down-icon.png";
 import dropdownUpIcon from "images/dropdown/dropdown-up-icon.png";
+import dropdownSearchIcon from "images/search/search-dropdown-icon3.png";
 
 const Dropdown = ({
   title,
@@ -20,27 +25,30 @@ const Dropdown = ({
   typesCategory,
   typesCategoryKey,
   dropdownClass,
+  searchActive,
 }) => {
   const [listOpen, setListOpen] = useState(false);
   const [index, setIndex] = useState(-1);
+  const [searchValue, setSearchValue] = useState("");
+  const [itemsToDispaly, setItemsToDispaly] = useState(items);
   const toggleList = () => setListOpen(!listOpen);
 
   useEffect(() => {
     if (items) {
+      setItemsToDispaly(items);
       setIndex(items.findIndex((item) => item.selected === true));
     }
   }, [items]);
 
   useEffect(() => {
     if (user && Object.keys(user).length !== 0) {
-      setItems(
-        items.map((item) =>
-          item.id === user[typesCategory][typesCategoryKey] ||
-          item.value === user[typesCategory][typesCategoryKey]
-            ? { ...item, selected: true }
-            : { ...item, selected: false }
-        )
+      const selected = items.map((item) =>
+        item.id === user[typesCategory][typesCategoryKey] ||
+        item.value === user[typesCategory][typesCategoryKey]
+          ? { ...item, selected: true }
+          : { ...item, selected: false }
       );
+      setItems(selected);
     }
   }, [user]);
 
@@ -61,6 +69,15 @@ const Dropdown = ({
     });
   };
 
+  const handleSearch = (e) => {
+    let searched = [...items].filter(
+      (item) =>
+        item.value.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        item.title.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setItemsToDispaly(searched);
+  };
+
   return (
     <>
       <DropdownContainer>
@@ -76,28 +93,47 @@ const Dropdown = ({
             alt="ikona rozwijanej listy"
           />
         </DropdownHeader>
-        <DropdownList className={listOpen ? dropdownClass : null}>
-          {items &&
-            items.map((item) => (
-              <DropdownListItem
-                className={item.selected ? "dropdown-active" : null}
-                key={item.id}
-                onClick={(e) => {
-                  toggleSelected(
-                    e,
-                    item.id,
-                    item.selected,
-                    item.category,
-                    item.key,
-                    item.value
-                  );
-                  toggleList();
+        <DropdownListContainer className={listOpen ? dropdownClass : null}>
+          {searchActive ? (
+            <DropdownSerach>
+              <DropdownSerachImg
+                src={dropdownSearchIcon}
+                alt="ikona wyszukiwania"
+              />
+              <DropdownSerachInput
+                id="search-users"
+                placeholder="szukaj"
+                value={searchValue}
+                onChange={(e) => {
+                  setSearchValue(e.target.value);
+                  handleSearch(e);
                 }}
-              >
-                {item.title}
-              </DropdownListItem>
-            ))}
-        </DropdownList>
+              />
+            </DropdownSerach>
+          ) : null}
+          <DropdownList>
+            {items &&
+              itemsToDispaly.map((item) => (
+                <DropdownListItem
+                  className={item.selected ? "dropdown-active" : null}
+                  key={item.id}
+                  onClick={(e) => {
+                    toggleSelected(
+                      e,
+                      item.id,
+                      item.selected,
+                      item.category,
+                      item.key,
+                      item.value
+                    );
+                    toggleList();
+                  }}
+                >
+                  {item.title}
+                </DropdownListItem>
+              ))}
+          </DropdownList>
+        </DropdownListContainer>
       </DropdownContainer>
     </>
   );

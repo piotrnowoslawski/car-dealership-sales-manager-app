@@ -54,6 +54,7 @@ const UserFormJob = ({ user, form, setForm, handleInput }) => {
               typesCategory="job"
               typesCategoryKey="position"
               dropdownClass="dropdown-job"
+              searchActive={false}
             />
             {jobTypes.some((item) => item.selected === true) ? (
               <InputCheckImg
@@ -77,6 +78,7 @@ const UserFormJob = ({ user, form, setForm, handleInput }) => {
               typesCategory="job"
               typesCategoryKey="workplace"
               dropdownClass="dropdown-job"
+              searchActive={false}
             />
             {workplaceTypes.some((item) => item.selected === true) ? (
               <InputCheckImg

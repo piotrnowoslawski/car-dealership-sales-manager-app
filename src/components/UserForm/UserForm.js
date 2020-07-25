@@ -137,7 +137,12 @@ const UserForm = ({
             setForm={setForm}
             handleInput={handleInput}
           />
-          <UserFormAddress />
+          <UserFormAddress
+            user={user}
+            form={form}
+            setForm={setForm}
+            handleInput={handleInput}
+          />
           <UserFormContact />
           {/* <UserFormApps /> */}
         </UserFormInputsWrapper>

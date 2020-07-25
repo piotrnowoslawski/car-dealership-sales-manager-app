@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import {
   SectionWrapper,
   Section,
@@ -10,6 +11,7 @@ import {
 } from "../UserInfo/UserInfo.css";
 
 const UserInfoAddress = ({ user }) => {
+  const countries = useSelector((state) => state.countriesReducer.countries);
   return (
     <>
       <SectionWrapper>
@@ -38,7 +40,9 @@ const UserInfoAddress = ({ user }) => {
             </DataSection>
             <DataSection>
               <DataName>Kraj:</DataName>
-              <DataContent>{user.address.country}</DataContent>
+              <DataContent>
+                {countries && countries[user.address.country - 1].text}
+              </DataContent>
             </DataSection>
           </DataContainer>
         </Section>

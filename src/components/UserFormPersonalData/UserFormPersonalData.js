@@ -93,6 +93,7 @@ const UserFormPersonalData = ({ user, form, setForm, handleInput }) => {
               typesCategory="personalData"
               typesCategoryKey="gender"
               dropdownClass="dropdown-gender"
+              searchActive={false}
             />
             {genderTypes.some((item) => item.selected === true) ? (
               <InputCheckImg
