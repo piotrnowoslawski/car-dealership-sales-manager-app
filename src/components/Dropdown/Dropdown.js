@@ -39,16 +39,20 @@ const Dropdown = ({
 
   useEffect(() => {
     if (user && Object.keys(user).length !== 0) {
-      let selecting = items.map((item) =>
-        item.id === user[typesCategory][typesCategoryKey] ||
-        item.value === user[typesCategory][typesCategoryKey]
-          ? { ...item, selected: true }
-          : { ...item, selected: false }
-      );
-      setItems(selecting);
-      setItemsToDispaly(selecting);
+      handleSelecting(items);
     }
   }, [user]);
+
+  const handleSelecting = (items) => {
+    let selecting = items.map((item) =>
+      item.id === user[typesCategory][typesCategoryKey] ||
+      item.value === user[typesCategory][typesCategoryKey]
+        ? { ...item, selected: true }
+        : { ...item, selected: false }
+    );
+    setItems(selecting);
+    setItemsToDispaly(selecting);
+  };
 
   const toggleSelected = (e, id, selected, category, key) => {
     let newSelecting = items.map((item) =>

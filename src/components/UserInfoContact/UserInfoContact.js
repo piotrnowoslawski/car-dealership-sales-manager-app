@@ -30,7 +30,7 @@ const UserInfoContact = ({ user }) => {
             </DataSection>
             <DataSection>
               <DataName>Skype:</DataName>
-              <DataContent>{user.contacts.apps.skype}</DataContent>
+              <DataContent>{user.contacts.skype}</DataContent>
             </DataSection>
           </DataContainer>
         </Section>

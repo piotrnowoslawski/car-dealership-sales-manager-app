@@ -37,6 +37,8 @@ const UserFormAddress = ({ user, form, setForm, handleInput }) => {
               type="text"
               id="street"
               placeholder="ulica"
+              pattern="[a-zA-Ząćśńółę. -]{3,}"
+              title="Minimalna ilość znaków 3, tylko litery oraz znak '.'"
               value={form.address.street}
               onChange={(e) => handleInput(e, "address")}
             />
@@ -52,6 +54,8 @@ const UserFormAddress = ({ user, form, setForm, handleInput }) => {
               type="text"
               id="propertyNumber"
               placeholder="numer domu"
+              pattern="[0-9]{0,}"
+              title="Tylko cyfry"
               value={form.address.propertyNumber}
               onChange={(e) => handleInput(e, "address")}
             />
@@ -67,6 +71,8 @@ const UserFormAddress = ({ user, form, setForm, handleInput }) => {
               type="text"
               id="apartmentNumber"
               placeholder="numer lokalu"
+              pattern="[0-9]{0,}"
+              title="Tylko cyfry"
               value={form.address.apartmentNumber}
               onChange={(e) => handleInput(e, "address")}
             />
@@ -82,6 +88,8 @@ const UserFormAddress = ({ user, form, setForm, handleInput }) => {
               type="text"
               id="city"
               placeholder="miasto"
+              pattern="[a-zA-Ząćśńółę. -]{3,}"
+              title="Minimalna ilość znaków 3, tylko litery"
               value={form.address.city}
               onChange={(e) => handleInput(e, "address")}
             />
@@ -97,6 +105,8 @@ const UserFormAddress = ({ user, form, setForm, handleInput }) => {
               type="text"
               id="zipCode"
               placeholder="kod pocztowy"
+              pattern="[0-9]{0,2}-[0-9]{0,3}"
+              title="Format: 00-000"
               value={form.address.zipCode}
               onChange={(e) => handleInput(e, "address")}
             />

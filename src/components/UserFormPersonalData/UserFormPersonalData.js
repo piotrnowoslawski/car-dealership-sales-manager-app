@@ -27,6 +27,9 @@ const UserFormPersonalData = ({ user, form, setForm, handleInput }) => {
               type="text"
               id="firstName"
               placeholder="imię"
+              pattern="[a-zA-Ząćśńółę]{3,}"
+              title="Minimalna ilość znaków 3, tylko litery bez spacji"
+              required
               value={form.personalData.firstName}
               onChange={(e) => handleInput(e, "personalData")}
             />
@@ -42,6 +45,8 @@ const UserFormPersonalData = ({ user, form, setForm, handleInput }) => {
               type="text"
               id="secondName"
               placeholder="drugie imię"
+              pattern="[a-zA-Ząćśńółę]{3,}"
+              title="Minimalna ilość znaków 3, tylko litery bez spacji"
               value={form.personalData.secondName}
               onChange={(e) => handleInput(e, "personalData")}
             />
@@ -57,6 +62,9 @@ const UserFormPersonalData = ({ user, form, setForm, handleInput }) => {
               type="text"
               id="lastName"
               placeholder="nazwisko"
+              pattern="[a-zA-Ząćśńółę -]{3,}"
+              title="Minimalna ilość znaków 3, tylko litery"
+              required
               value={form.personalData.lastName}
               onChange={(e) => handleInput(e, "personalData")}
             />
@@ -72,6 +80,9 @@ const UserFormPersonalData = ({ user, form, setForm, handleInput }) => {
               type="text"
               id="pesel"
               placeholder="pesel"
+              pattern="[0-9]{11,11}"
+              title="Pesel zawiera 11 cyfr"
+              required
               value={form.personalData.pesel}
               onChange={(e) => handleInput(e, "personalData")}
             />

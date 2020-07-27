@@ -26,7 +26,7 @@ const UserFormJob = ({ user, form, setForm, handleInput }) => {
 
   useEffect(() => {
     setWorkplaceTypes(
-      workplaces.map((item, index) => ({
+      workplaces.map((item) => ({
         id: item._id,
         title: item.workplaceData.name,
         value: item.workplaceData.name,

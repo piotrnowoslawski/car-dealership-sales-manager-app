@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getUsers } from "data/fetch/users.fetch";
 import { Prompt } from "react-router-dom";
 import {
   DashboardHeader,
@@ -66,16 +68,20 @@ const UserForm = ({
       country: "",
     },
     contacts: {
-      emial: "",
+      email: "",
       privatePhone: "",
       businessPhone: "",
       landlinePhone: "",
-      apps: {
-        skype: "",
-      },
+      skype: "",
     },
     role: "",
   });
+  const users = useSelector((state) => state.usersReducer.users);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
 
   useEffect(() => {
     if (user && Object.keys(user).length !== 0) {
@@ -93,9 +99,32 @@ const UserForm = ({
     });
   };
 
+  const peselCheck = (users) => {
+    let peselCheck = users.some(
+      (item) => item.personalData.pesel === form.personalData.pesel
+    );
+    let idEqualCheck = users.some((item) => item._id === form._id);
+
+    let peselAndIdEqualCheck = users.some(
+      (item) =>
+        item.personalData.pesel === form.personalData.pesel &&
+        item._id === form._id
+    );
+
+    if (peselCheck && !idEqualCheck) {
+      alert("Podany numer pesel istnieje w bazie danych");
+      return;
+    } else if (peselCheck && !peselAndIdEqualCheck) {
+      alert("Podany numer pesel istnieje w bazie danych");
+      return;
+    } else {
+      handleForm(form);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleForm(form);
+    peselCheck(users);
   };
 
   return (
@@ -143,7 +172,12 @@ const UserForm = ({
             setForm={setForm}
             handleInput={handleInput}
           />
-          <UserFormContact />
+          <UserFormContact
+            user={user}
+            form={form}
+            setForm={setForm}
+            handleInput={handleInput}
+          />
           {/* <UserFormApps /> */}
         </UserFormInputsWrapper>
         <ButtonsContainer>
@@ -151,7 +185,19 @@ const UserForm = ({
             <ButtonImg src={cancelButtonIcon} alt="przycisk anuluj" />
             <ButtonText>Anuluj</ButtonText>
           </Button>
-          <Button green type="submit" disabled={false}>
+          <Button
+            green
+            type="submit"
+            disabled={false}
+            disabled={
+              form.personalData.firstName &&
+              form.personalData.lastName &&
+              form.personalData.pesel &&
+              form.personalData.gender
+                ? false
+                : true
+            }
+          >
             <ButtonImg src={saveButtonIcon} alt="przycisk zapisz" />
             <ButtonText>{submitText}</ButtonText>
           </Button>
