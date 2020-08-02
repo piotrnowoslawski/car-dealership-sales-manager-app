@@ -11,6 +11,9 @@ import {
   InputCheckImg,
   WrapperForCheck,
 } from "../UserForm/UserForm.css";
+import "react-day-picker/lib/style.css";
+import DayPickerInput from "react-day-picker/DayPickerInput";
+
 import checkIcon from "images/form/form-check-icon.png";
 
 const UserFormJob = ({ user, form, setForm, handleInput }) => {
@@ -90,6 +93,9 @@ const UserFormJob = ({ user, form, setForm, handleInput }) => {
               ) : null}
             </WrapperForCheck>
           ) : null}
+        </InputField>
+        <InputField>
+          <DayPickerInput />
         </InputField>
       </SectionWrapper>
     </>

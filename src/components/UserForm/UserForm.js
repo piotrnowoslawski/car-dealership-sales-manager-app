@@ -99,9 +99,12 @@ const UserForm = ({
     });
   };
 
-  const peselCheck = (users) => {
+  const uniqueDataCheck = (users) => {
     let peselCheck = users.some(
       (item) => item.personalData.pesel === form.personalData.pesel
+    );
+    let emailCheck = users.some(
+      (item) => item.contacts.email === form.contacts.email
     );
     let idEqualCheck = users.some((item) => item._id === form._id);
 
@@ -111,20 +114,33 @@ const UserForm = ({
         item._id === form._id
     );
 
+    let emailAndIdEqualCheck = users.some(
+      (item) =>
+        item.contacts.email === form.contacts.email && item._id === form._id
+    );
+
     if (peselCheck && !idEqualCheck) {
       alert("Podany numer pesel istnieje w bazie danych");
       return;
-    } else if (peselCheck && !peselAndIdEqualCheck) {
+    }
+    if (peselCheck && !peselAndIdEqualCheck) {
       alert("Podany numer pesel istnieje w bazie danych");
       return;
-    } else {
-      handleForm(form);
     }
+    if (form.contacts.email !== "" && emailCheck && !idEqualCheck) {
+      alert("Podany email istnieje w bazie danych");
+      return;
+    }
+    if (form.contacts.email !== "" && emailCheck && !emailAndIdEqualCheck) {
+      alert("Podany email istnieje w bazie danych");
+      return;
+    }
+    handleForm(form);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    peselCheck(users);
+    uniqueDataCheck(users);
   };
 
   return (
@@ -188,7 +204,6 @@ const UserForm = ({
           <Button
             green
             type="submit"
-            disabled={false}
             disabled={
               form.personalData.firstName &&
               form.personalData.lastName &&

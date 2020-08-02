@@ -1,10 +1,21 @@
 import styled from "styled-components";
 
 export const DropdownContainer = styled.div`
-  width: 60%;
+  position: absolute;
+  z-index: 1;
+  width: calc(60% - 30px);
   margin-top: 5px;
   border: solid 1px ${({ theme }) => theme.colors.blue.main};
   border-radius: 3px 3px 3px 3px;
+  transition: 0.5s;
+
+  &.dropdown-index {
+    z-index: 2;
+    transition: none;
+    -webkit-box-shadow: 0px 0px 5px 2px rgba(3, 83, 136, 1);
+    -moz-box-shadow: 0px 0px 5px 2px rgba(3, 83, 136, 1);
+    box-shadow: 0px 0px 5px 2px rgba(3, 83, 136, 1);
+  }
 `;
 
 export const DropdownHeader = styled.div`

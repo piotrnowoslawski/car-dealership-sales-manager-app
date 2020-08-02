@@ -32,7 +32,7 @@ const Pagination = ({
   }
   return (
     <>
-      {items.length ? (
+      {totalItems > 0 ? (
         <PaginationNav>
           {currentPage === 1 ? null : (
             <StyledLinkArrow

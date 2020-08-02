@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import useOutsideClose from "hooks";
 import {
   DropdownContainer,
   DropdownHeader,
@@ -27,11 +28,11 @@ const Dropdown = ({
   dropdownClass,
   searchActive,
 }) => {
+  const ref = useRef();
   const [listOpen, setListOpen] = useState(false);
   const [index, setIndex] = useState();
   const [searchValue, setSearchValue] = useState("");
   const [itemsToDispaly, setItemsToDispaly] = useState(items);
-  const toggleList = () => setListOpen(!listOpen);
 
   useEffect(() => {
     setIndex(items.findIndex((item) => item.selected === true));
@@ -42,6 +43,14 @@ const Dropdown = ({
       handleSelecting(items);
     }
   }, [user]);
+
+  useOutsideClose(ref, () => {
+    if (listOpen) setListOpen(false);
+  });
+
+  const toggleList = () => {
+    setListOpen(!listOpen);
+  };
 
   const handleSelecting = (items) => {
     let selecting = items.map((item) =>
@@ -55,18 +64,18 @@ const Dropdown = ({
   };
 
   const toggleSelected = (e, id, selected, category, key) => {
+    setForm({
+      ...form,
+      [category]: {
+        ...form[category],
+        [key]: !selected ? id : false,
+      },
+    });
     let newSelecting = items.map((item) =>
       item.id === id
         ? { ...item, selected: !selected }
         : { ...item, selected: false }
     );
-    setForm({
-      ...form,
-      [category]: {
-        ...form[category],
-        [key]: id,
-      },
-    });
     setItems(newSelecting);
     setItemsToDispaly(newSelecting);
   };
@@ -82,8 +91,9 @@ const Dropdown = ({
 
   return (
     <>
-      <DropdownContainer>
+      <DropdownContainer className={`${listOpen ? "dropdown-index" : null}`}>
         <DropdownHeader
+          ref={ref}
           className={`${listOpen ? "dropdown-open" : null}`}
           onClick={(e) => toggleList()}
         >

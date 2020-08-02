@@ -52,6 +52,8 @@ export const SectionWrapperHeader = styled.h3`
 `;
 
 export const InputField = styled.div`
+  position: relative;
+  height: 70px;
   width: 100%;
   padding: 0 25px;
   margin: 10px 0;
@@ -82,6 +84,10 @@ export const InputCheckImg = styled.img`
   margin-left: 10px;
   margin-top: 10px;
   height: 30px;
+
+  &.dropdown-check {
+    margin-left: calc(60% + 10px);
+  }
 `;
 
 export const WrapperForCheck = styled.div`
