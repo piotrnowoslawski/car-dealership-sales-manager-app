@@ -11,6 +11,9 @@ const useOutsideClose = (ref, callback) => {
     if (e.key === "Escape") {
       callback();
     }
+    if (e.keyCode === 9 && ref.current && !ref.current.contains(e.target)) {
+      callback();
+    }
   };
 
   useEffect(() => {

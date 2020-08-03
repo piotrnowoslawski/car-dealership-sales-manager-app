@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import useOutsideClose from "hooks";
+import { useOutsideClose, useEnterKeyOpen } from "hooks";
 import {
   DropdownContainer,
   DropdownHeader,
@@ -28,7 +28,8 @@ const Dropdown = ({
   dropdownClass,
   searchActive,
 }) => {
-  const ref = useRef();
+  const containerRef = useRef();
+  const itemRef = useRef();
   const [listOpen, setListOpen] = useState(false);
   const [index, setIndex] = useState();
   const [searchValue, setSearchValue] = useState("");
@@ -44,7 +45,11 @@ const Dropdown = ({
     }
   }, [user]);
 
-  useOutsideClose(ref, () => {
+  useEnterKeyOpen(containerRef, () => {
+    !listOpen && setListOpen(true);
+  });
+
+  useOutsideClose(containerRef, () => {
     if (listOpen) setListOpen(false);
   });
 
@@ -89,11 +94,41 @@ const Dropdown = ({
     setItemsToDispaly(searched);
   };
 
+  const handleKeyDown = (e) => {
+    if (listOpen) {
+      if (e.keyCode !== 9 && e.key !== "escape" && e.keyCode !== 13) {
+        e.preventDefault();
+        let item;
+        if (e.keyCode === 40 && index >= 0 && index < items.length - 1) {
+          item = items[index + 1];
+        } else if (e.keyCode === 38 && index > 0 && index <= items.length - 1) {
+          item = items[index - 1];
+        } else if (e.keyCode === 40 && index === -1) {
+          item = items[0];
+        } else return;
+        toggleSelected(e, item.id, item.selected, item.category, item.key);
+      }
+      if (e.keyCode === 13) {
+        setListOpen(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleKeyDown]);
+
   return (
     <>
-      <DropdownContainer className={`${listOpen ? "dropdown-index" : null}`}>
+      <DropdownContainer
+        className={`${listOpen ? "dropdown-index" : null}`}
+        ref={containerRef}
+        tabIndex="0"
+      >
         <DropdownHeader
-          ref={ref}
           className={`${listOpen ? "dropdown-open" : null}`}
           onClick={(e) => toggleList()}
         >
@@ -125,8 +160,10 @@ const Dropdown = ({
           ) : null}
           <DropdownList>
             {items &&
-              itemsToDispaly.map((item) => (
+              itemsToDispaly.map((item, index) => (
                 <DropdownListItem
+                  ref={itemRef}
+                  tabIndex={listOpen ? 0 : -1}
                   className={item.selected ? "dropdown-active" : null}
                   key={item.id}
                   onClick={(e) => {
@@ -138,6 +175,18 @@ const Dropdown = ({
                       item.key
                     );
                     toggleList();
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.keyCode === 13) {
+                      toggleSelected(
+                        e,
+                        item.id,
+                        item.selected,
+                        item.category,
+                        item.key
+                      );
+                      toggleList();
+                    }
                   }}
                 >
                   {item.title}

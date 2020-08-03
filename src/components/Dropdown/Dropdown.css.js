@@ -15,6 +15,7 @@ export const DropdownContainer = styled.div`
     -webkit-box-shadow: 0px 0px 5px 2px rgba(3, 83, 136, 1);
     -moz-box-shadow: 0px 0px 5px 2px rgba(3, 83, 136, 1);
     box-shadow: 0px 0px 5px 2px rgba(3, 83, 136, 1);
+    outline: none;
   }
 `;
 
@@ -110,6 +111,13 @@ export const DropdownListItem = styled.li`
   }
 
   &:hover {
+    background: ${({ theme }) => theme.colors.grey.light};
+    padding-left: 20px;
+    color: ${({ theme }) => theme.colors.blue.main};
+  }
+
+  &:focus {
+    outline: none;
     background: ${({ theme }) => theme.colors.grey.light};
     padding-left: 20px;
     color: ${({ theme }) => theme.colors.blue.main};
